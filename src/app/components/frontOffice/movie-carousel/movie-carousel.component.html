@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center">
+  <ngb-carousel [showNavigationArrows]="config.showNavigationArrows" [showNavigationIndicators]="config.showNavigationIndicators" [interval]="interval">
+    <ngb-slide *ngFor="let movie of moviesList; let i = index">
+      <img [src]="movie.imageUrl" alt="{{ movie.title }}" class="d-block w-100">
+      <ngb-carousel-caption>
+        <h3>{{ movie.title }}</h3>
+        <p>{{ movie.description }}</p>
+      </ngb-carousel-caption>
+    </ngb-slide>
+  </ngb-carousel>
+</div>
