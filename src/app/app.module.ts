@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import {RouterModule} from "@angular/router";
+import {CarouselModule} from "primeng/carousel";
 
 
 @NgModule({
@@ -14,12 +15,14 @@ import {RouterModule} from "@angular/router";
 
   ],
   imports: [
+    CarouselModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule,
     AppComponent,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    CarouselModule,
   ],
   providers: [
 

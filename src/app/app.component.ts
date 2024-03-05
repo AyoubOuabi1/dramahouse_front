@@ -5,9 +5,9 @@ import {FrontOfficeLayoutComponent} from "./components/frontOffice/front-office-
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [CommonModule, FrontOfficeLayoutComponent, RouterOutlet,],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
