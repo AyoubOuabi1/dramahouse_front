@@ -9,5 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./topmovie.component.css']
 })
 export class TopmovieComponent {
+  constructor() { }
 
 }
