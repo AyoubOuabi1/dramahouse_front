@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CarouselModule, OwlOptions} from "ngx-owl-carousel-o";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Movie} from "../../../models/movie";
 
 @Component({
   selector: 'app-movie-carousel',
@@ -12,7 +13,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class MovieCarouselComponent {
 
-  @Input() moviesList!: any[];
+  @Input() moviesList: Movie[] = [];
 
   customOptions: OwlOptions = {
     loop: true,

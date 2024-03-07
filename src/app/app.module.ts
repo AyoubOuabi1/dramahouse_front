@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {RouterModule} from "@angular/router";
 import {CarouselModule} from "primeng/carousel";
+import {HttpClientModule, provideHttpClient} from "@angular/common/http";
 
 
 @NgModule({
@@ -23,9 +24,10 @@ import {CarouselModule} from "primeng/carousel";
     AppComponent,
     NoopAnimationsModule,
     CarouselModule,
+    HttpClientModule
   ],
   providers: [
-
+    provideHttpClient(),
   ],
 })
 export class AppModule { }

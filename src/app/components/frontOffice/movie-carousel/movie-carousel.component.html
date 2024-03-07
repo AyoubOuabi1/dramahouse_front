@@ -2,7 +2,7 @@
   <ng-template carouselSlide *ngFor="let movie of moviesList">
     <div class="slide ">
       <div class="card movie-card card-content" style="width: 18rem;">
-        <img class="card-img-top movie-image" [src]="movie.imageUrl" alt="Movie Poster">
+        <img class="card-img-top movie-image" [src]="movie.posterUrl" alt="Movie Poster">
         <div class="card-body">
           <h5 class="card-title movie-title">{{movie.title}}</h5>
           <a href="#" class="btn btn-primary btn-watch-now">Watch Now</a>
