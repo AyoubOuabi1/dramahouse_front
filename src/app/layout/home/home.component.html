@@ -1,0 +1,14 @@
+
+<app-header></app-header>
+  <main>
+    <article>
+        <app-top-movies></app-top-movies>
+
+        <div class="container">
+            <app-movie-carousel [moviesList]="comedyMovies"></app-movie-carousel>
+            <app-movie-carousel [moviesList]="allMovies"></app-movie-carousel>
+          </div>        
+    </article>
+  </main>
+
+  <app-footer></app-footer>

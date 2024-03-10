@@ -3,19 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dramahouse": {
+    "dramahouse_frontend": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "standalone": true
-        },
-        "@schematics/angular:directive": {
-          "standalone": true
-        },
-        "@schematics/angular:pipe": {
-          "standalone": true
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -23,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dramahouse",
+            "outputPath": "dist/dramahouse_frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -35,14 +25,9 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-
-
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -66,7 +51,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -75,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "dramahouse:build:production"
+              "browserTarget": "dramahouse_frontend:build:production"
             },
             "development": {
-              "browserTarget": "dramahouse:build:development"
+              "browserTarget": "dramahouse_frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dramahouse:build"
+            "browserTarget": "dramahouse_frontend:build"
           }
         },
         "test": {
@@ -109,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "25898a74-34e3-4479-add8-e01285e5c247"
   }
 }

@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [AppComponent]
+    imports: [RouterTestingModule],
+    declarations: [AppComponent]
   }));
 
   it('should create the app', () => {
@@ -12,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'dramahouse' title`, () => {
+  it(`should have as title 'dramahouse_frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('dramahouse');
+    expect(app.title).toEqual('dramahouse_frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('dramahouse app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('dramahouse_frontend app is running!');
   });
 });
