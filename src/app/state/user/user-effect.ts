@@ -13,6 +13,7 @@ export class UserEffect {
     constructor(
         private actions$: Actions,
         private authService:AuthenticatonServiceService,
+        private localStorgeService:LocalStorgeServiceService,
         private router : Router,
         private localStorageService: LocalStorgeServiceService
         ){}
@@ -53,4 +54,26 @@ export class UserEffect {
         tap(() => this.router.navigate(['/'])),
         tap(() => this.localStorageService.clearLocalStorage())
     ), {dispatch: false});
+
+
+    checkJwtValidity$ = createEffect(() => this.actions$.pipe(
+        ofType(UserActions.checkJwtValidity),
+        mergeMap(action => this.authService.checkJwtValidity(action.token).pipe(
+            map(() => UserActions.checkJwtValiditySuccess()),
+            catchError((errorMessage) => [UserActions.checkJwtValidityFailure({errorMessage})])
+        ))
+    ));
+
+    checkJwtValidityFailure$ = createEffect(() => this.actions$.pipe(
+        ofType(UserActions.checkJwtValidityFailure),
+        tap(() => this.router.navigate(['/'])),
+        tap(()=> this.localStorgeService.clearLocalStorage()),
+    ), {dispatch: false});
+
+    checkJwtValiditySuccess$ = createEffect(() => this.actions$.pipe(
+        ofType(UserActions.checkJwtValiditySuccess),
+        tap(() => this.router.navigate(['/dashboard']))
+    ), {dispatch: false});
+
+
 }

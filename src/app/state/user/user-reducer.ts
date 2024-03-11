@@ -57,5 +57,33 @@ export interface UserState {
         loading: false
     })),
   
+    on(UserActions.logout, state => ({
+      ...state,
+      user: null,
+      loading: false,
+      error: null,
+    })),
+
+    on(UserActions.checkJwtValidity, state => ({
+      ...state,
+      loading: true,
+      error: null,
+    })),
+
+    on(UserActions.checkJwtValiditySuccess, state => ({
+      ...state,
+      loading: false,
+    })),
+
+    on(UserActions.checkJwtValidityFailure, (state, { errorMessage }) => ({
+      ...state,
+      error: errorMessage,
+      loading: false
+  })),
+
+
 
   );
+
+
+

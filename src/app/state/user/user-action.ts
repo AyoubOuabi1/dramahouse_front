@@ -1,5 +1,6 @@
 import { createAction , props } from "@ngrx/store";
 import { AuthResponse } from "src/app/entities/auth-response";
+import { TokenRes } from "src/app/entities/token-res";
 import { UserEntity } from "src/app/entities/user-entity";
 import { UserEntityLogin } from "src/app/entities/user-entity-login";
 export const login = createAction(
@@ -34,5 +35,19 @@ export const registerSuccess = createAction(
 
 export const registerFailure = createAction(
     '[User] Register Failure',
+    props<{ errorMessage: string }>()
+);
+
+export const checkJwtValidity = createAction(
+    '[User] Check Jwt Validity',
+    props<{ token: string }>()
+);
+
+export const checkJwtValiditySuccess = createAction(
+    '[User] Check Jwt Validity Success'
+);
+
+export const checkJwtValidityFailure = createAction(
+    '[User] Check Jwt Validity Failure',
     props<{ errorMessage: string }>()
 );
