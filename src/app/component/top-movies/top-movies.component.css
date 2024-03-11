@@ -1,0 +1,28 @@
+
+.hero {
+  background-size: cover;
+  min-height: 750px;
+  height: 100vh;
+  max-height: 1000px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-block: var(--section-padding);
+}
+
+.hero-content { margin-top: 60px; }
+
+.hero-subtitle {
+  color: var(--citrine);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-700);
+  margin-bottom: 10px;
+}
+
+.hero-title { margin-bottom: 30px; }
+
+.hero-title > strong { color: var(--citrine); }
+
+
+
+.hero-content { margin-top: 90px; }

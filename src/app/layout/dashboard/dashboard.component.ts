@@ -19,11 +19,10 @@ export class DashboardComponent implements OnInit{
     private store: Store<AppState>,
   ) {
 
-    // i wanna fill token that its interface authresponse zith string on it call token
     this.tokenstring = localStorage.getItem('token')+'';
     console.log(this.tokenstring);
 
-    this.store.dispatch(UserActions.checkJwtValidity({token: this.tokenstring}))
+    //this.store.dispatch(UserActions.checkJwtValidity({token: this.tokenstring}))
 
 
 
@@ -33,5 +32,6 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
 
   }
+   //for dashboard
 
 }
