@@ -9,7 +9,10 @@ import { Movie } from 'src/app/entities/movie';
 })
 export class MovieCarouselComponent {
   @Input() moviesList: Movie[] = [];
-
+  constructor() {
+    console.log(this.moviesList);
+    console.log("work");
+  }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

@@ -21,7 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { userReducer } from './state/user/user-reducer';
 import { UserEffect } from './state/user/user-effect';
 import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
-import { SidebarComponent } from './component/dashboard/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { SidebarComponent } from './component/dashboard/sidebar/sidebar.componen
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
-    SidebarComponent,
-    
+
   ],
   imports: [
     BrowserModule,
