@@ -12,8 +12,6 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { LoginFormComponent } from './component/login-form/login-form.component';
 import { RegisterFormComponent } from './component/register-form/register-form.component';
 import { TopMoviesComponent } from './component/top-movies/top-movies.component';
-import { MovieCarouselComponent } from './component/movie-carousel/movie-carousel.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
@@ -31,7 +29,6 @@ import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
     LoginFormComponent,
     RegisterFormComponent,
     TopMoviesComponent,
-    MovieCarouselComponent,
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
@@ -46,7 +43,6 @@ import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
     NoopAnimationsModule,
     StoreModule.forRoot({user: userReducer}, {}),
     EffectsModule.forRoot([UserEffect]),
-    CarouselModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
