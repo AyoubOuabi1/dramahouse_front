@@ -6,7 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LocalStorgeServiceService } from '../service/local-storge-service.service';
+import { LocalStorgeServiceService } from '../service/local-storage/local-storge-service.service';
 
 @Injectable()
 export class TokenCheckInterceptor implements HttpInterceptor {
@@ -26,7 +26,7 @@ export class TokenCheckInterceptor implements HttpInterceptor {
 
       // Send the newly created request
       return next.handle(authReq);
-    }	
+    }
 
     return next.handle(request);
   }

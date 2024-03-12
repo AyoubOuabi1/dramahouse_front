@@ -11,14 +11,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthComponent } from './layout/auth/auth.component';
 import { LoginFormComponent } from './component/login-form/login-form.component';
 import { RegisterFormComponent } from './component/register-form/register-form.component';
-import { TopMoviesComponent } from './component/top-movies/top-movies.component';
+import { TopMoviesComponent } from './component/front/top-movies/top-movies.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import { FooterComponent } from './component/footer/footer.component';
-import { HeaderComponent } from './component/header/header.component';
+import { FooterComponent } from './component/front/footer/footer.component';
+import { HeaderComponent } from './component/front/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { userReducer } from './state/user/user-reducer';
 import { UserEffect } from './state/user/user-effect';
 import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
+import { LatestMoviesComponent } from './component/front/latest-movies/latest-movies.component';
+import { AllmoviesComponent } from './component/front/allmovies/allmovies.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
+    LatestMoviesComponent,
+    AllmoviesComponent,
 
   ],
   imports: [

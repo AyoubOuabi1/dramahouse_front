@@ -5,11 +5,18 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { AuthComponent } from './layout/auth/auth.component';
 import { LoginFormComponent } from './component/login-form/login-form.component';
 import { RegisterFormComponent } from './component/register-form/register-form.component';
+import {LatestMoviesComponent} from "./component/front/latest-movies/latest-movies.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    children:[
+      {
+        path: '',
+        component: LatestMoviesComponent
+      }
+    ]
   },
   {
     path: 'dashboard',

@@ -1,0 +1,19 @@
+<div>
+  <app-top-movies></app-top-movies>
+</div>
+<div class="container">
+  <div>
+    <h1 class="text-center text-white mt-5">Latest Movies</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 mt-4" *ngFor="let movie of movies; let i = index;">
+      <div class="card movie-card">
+        <img src="{{ movie.posterUrl }}" class="card-img-top" alt="{{ movie.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <a href="#" class="btn btn-primary">Watch Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

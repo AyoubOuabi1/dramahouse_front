@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { UserEntity } from '../entities/user-entity';
-import { AuthResponse } from '../entities/auth-response';
+import { UserEntity } from '../../entities/user-entity';
+import { AuthResponse } from '../../entities/auth-response';
 import { HttpClient } from '@angular/common/http';
-import { UserEntityLogin } from '../entities/user-entity-login';
+import { UserEntityLogin } from '../../entities/user-entity-login';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { TokenRes } from '../entities/token-res';
+import { TokenRes } from '../../entities/token-res';
 
 @Injectable({
   providedIn: 'root'

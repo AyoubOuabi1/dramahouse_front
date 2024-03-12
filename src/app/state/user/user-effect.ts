@@ -1,11 +1,11 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { AuthenticatonServiceService } from 'src/app/service/authenticaton-service.service';
+import { AuthenticatonServiceService } from 'src/app/service/auth/authenticaton-service.service';
 import * as UserActions from '../user/user-action';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { LocalStorgeServiceService } from 'src/app/service/local-storge-service.service';
+import { LocalStorgeServiceService } from 'src/app/service/local-storage/local-storge-service.service';
 
 
 @Injectable()
