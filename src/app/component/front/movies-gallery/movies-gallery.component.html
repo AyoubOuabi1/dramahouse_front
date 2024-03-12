@@ -1,0 +1,39 @@
+<div>
+  <app-top-movies></app-top-movies>
+</div>
+
+<div class="container">
+  <!-- Search input and select dropdown -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <form class="d-flex">
+        <input type="text" class="form-control me-2" placeholder="Search by movie name" [(ngModel)]="searchTerm">
+
+        <!-- Select dropdown for filtering -->
+        <select class="form-select" [(ngModel)]="selectedGenre">
+          <option value="">All Genres</option>
+          <option *ngFor="let genre of genres | async" [value]="genre.id">{{ genre.name }}</option>
+        </select>
+
+        <!-- Search button -->
+        <button class="btn btn-primary" type="button" (click)="search()">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Latest Movies section -->
+  <div>
+    <h1 class="text-center text-white mt-5">Latest Movies</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 mt-4" *ngFor="let movie of filteredMovies; let i = index;">
+      <div class="card movie-card">
+        <img src="{{ movie.posterUrl }}" style="height: 40vh;" class="card-img-top" alt="{{ movie.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <a href="#" class="btn btn-primary">Watch Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

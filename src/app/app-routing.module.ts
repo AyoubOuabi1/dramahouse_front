@@ -6,6 +6,7 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { LoginFormComponent } from './component/login-form/login-form.component';
 import { RegisterFormComponent } from './component/register-form/register-form.component';
 import {LatestMoviesComponent} from "./component/front/latest-movies/latest-movies.component";
+import {MoviesGalleryComponent} from "./component/front/movies-gallery/movies-gallery.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: '',
         component: LatestMoviesComponent
+      },
+      {
+        path: 'gallery',
+        component: MoviesGalleryComponent
       }
     ]
   },

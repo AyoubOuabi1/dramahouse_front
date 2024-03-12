@@ -15,14 +15,14 @@ import { TopMoviesComponent } from './component/front/top-movies/top-movies.comp
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { FooterComponent } from './component/front/footer/footer.component';
 import { HeaderComponent } from './component/front/header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { userReducer } from './state/user/user-reducer';
 import { UserEffect } from './state/user/user-effect';
 import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
 import { LatestMoviesComponent } from './component/front/latest-movies/latest-movies.component';
-import { AllmoviesComponent } from './component/front/allmovies/allmovies.component';
 import {movieReducer} from "./state/movie/movie-reducer";
 import {MovieEffect} from "./state/movie/movie-effect";
+import { MoviesGalleryComponent } from './component/front/movies-gallery/movies-gallery.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import {MovieEffect} from "./state/movie/movie-effect";
     HeaderComponent,
     NavbarComponent,
     LatestMoviesComponent,
-    AllmoviesComponent,
+    MoviesGalleryComponent,
 
   ],
   imports: [
@@ -49,7 +49,8 @@ import {MovieEffect} from "./state/movie/movie-effect";
     NoopAnimationsModule,
     StoreModule.forRoot({user: userReducer, movie: movieReducer}, {}),
     EffectsModule.forRoot([UserEffect, MovieEffect]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
