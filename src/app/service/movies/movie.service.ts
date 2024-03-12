@@ -31,12 +31,12 @@ export class MovieService {
   }
 
   searchMoviesByName(name: string): Observable<Movie[]> {
-    const url = `${this.apiUrl}/search/${name}`;
+    const url = `${this.apiUrl}/search?name=${name}`;
     return this.http.get<Movie[]>(url);
   }
 
   searchMoviesByGenre(genre: string): Observable<Movie[]> {
-    const url = `${this.apiUrl}/search/genre/${genre}`;
+    const url = `${this.apiUrl}/search/genre?name=${genre}`;
     return this.http.get<Movie[]>(url);
   }
 

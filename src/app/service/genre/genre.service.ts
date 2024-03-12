@@ -7,7 +7,7 @@ import {Genre} from "../../entities/genre";
   providedIn: 'root'
 })
 export class GenreService {
-  private baseUrl = '/api/v1/user/genres';
+  private baseUrl = 'http://localhost:8081/api/v1/user/genres';
 
   constructor(private http: HttpClient) { }
 

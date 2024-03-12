@@ -10,12 +10,12 @@ import * as MovieActions from '../../../state/movie/movie-action';
   styleUrls: ['./top-movies.component.css']
 })
 export class TopMoviesComponent implements OnInit{
-    movies!:Observable<Movie[]>;
+    moviesist!:Observable<Movie[]>;
 
     constructor(private store:Store<AppState>) {}
 
   ngOnInit(): void {
       this.store.dispatch(MovieActions.loadLastTenMovies())
-      this.movies=this.store.pipe(select(state => state.movie.movies));
+      this.moviesist=this.store.pipe(select(state => state.movie.movies));
   }
 }

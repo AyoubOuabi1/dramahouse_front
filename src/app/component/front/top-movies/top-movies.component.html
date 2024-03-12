@@ -1,6 +1,6 @@
 <div id="top-slider" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item" *ngFor="let movie of movies | async; let i = index" [class.active]="i === 0">
+    <div class="carousel-item" *ngFor="let movie of moviesist | async; let i = index" [class.active]="i === 0">
       <div class="background-image" [style.background]="'url(' + movie.coverUrl + ')'">
         <!-- Your movie details here -->
         <div class="p-5 text-white rounded-3 mb-3">
