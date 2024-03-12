@@ -15,7 +15,7 @@ export class LatestMoviesComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(MovieActions.loadAllMovies());
+    this.store.dispatch(MovieActions.loadLastTenMovies());
     this.movies$ = this.store.pipe(select(state => state.movie.movies));
   }
 }

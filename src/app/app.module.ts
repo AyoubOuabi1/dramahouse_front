@@ -21,6 +21,8 @@ import { UserEffect } from './state/user/user-effect';
 import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
 import { LatestMoviesComponent } from './component/front/latest-movies/latest-movies.component';
 import { AllmoviesComponent } from './component/front/allmovies/allmovies.component';
+import {movieReducer} from "./state/movie/movie-reducer";
+import {MovieEffect} from "./state/movie/movie-effect";
 
 @NgModule({
   declarations: [
@@ -45,8 +47,8 @@ import { AllmoviesComponent } from './component/front/allmovies/allmovies.compon
     HttpClientModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
-    StoreModule.forRoot({user: userReducer}, {}),
-    EffectsModule.forRoot([UserEffect]),
+    StoreModule.forRoot({user: userReducer, movie: movieReducer}, {}),
+    EffectsModule.forRoot([UserEffect, MovieEffect]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
