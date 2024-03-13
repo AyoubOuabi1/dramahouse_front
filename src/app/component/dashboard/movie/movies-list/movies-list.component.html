@@ -1,18 +1,15 @@
-<div>
+<div class="container-fluid ">
   <div class="d-flex justify-content-between">
     <h3 class="text-dark mb-4">Movies</h3>
     <a href="#"><button type="button" class="btn btn-primary" >Add new Movie </button></a>
-
   </div>
   <div class="card shadow">
     <div class="card-header py-3">
       <p class="text-primary m-0 fw-bold">Movies Info</p>
-
     </div>
     <div class="card-body">
       <div class="row">
         <div class="col-md-6 text-nowrap">
-
         </div>
         <div class="col-md-6">
           <div  class="text-md-end dataTables_filter"><label class="form-label"><input
@@ -34,7 +31,7 @@
           </tr>
           </thead>
           <tbody >
-          <tr *ngFor="let movie of movies$ | async">
+          <tr *ngFor="let movie of getPaginatedMovies() | async">
             <td><img src="{{movie.posterUrl}}" alt="banner" width="50" height="50"></td>
             <td>{{movie.title}}</td>
             <td>{{movie.releaseDate}}</td>
@@ -42,11 +39,15 @@
             <td>{{movie.duration}}</td>
             <td><a href="#"><button type="button" class="btn btn-primary">Edit </button></a></td>
             <td><a href="#"><button type="button" class="btn btn-danger" >Delete </button></a></td>
+          </tr>
           </tbody>
-
         </table>
       </div>
-
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="previousPage()">Previous</button>
+        <div class="me-4 ms-4">Page {{currentPage}} of {{totalPages}}</div>
+        <button class="btn btn-primary" [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
+      </div>
     </div>
   </div>
 </div>

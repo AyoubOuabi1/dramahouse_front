@@ -7,6 +7,7 @@ import {AppState} from "../../../../state/app-state";
 import {GenreService} from "../../../../service/genre/genre.service";
 import {Router} from "@angular/router";
 import * as MovieActions from "../../../../state/movie/movie-action";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-movies-list',
@@ -19,7 +20,10 @@ export class MoviesListComponent implements OnInit{
   genres!: Observable<Genre[]>;
   searchTerm: string = '';
   selectedGenre: string | null = null;
-
+  currentPage = 1;
+  itemsPerPage = 10;
+  totalItems = 0;
+  totalPages = 0;
   constructor(private store: Store<AppState>,
               private genreService:GenreService,
               private router: Router) {}
@@ -28,7 +32,10 @@ export class MoviesListComponent implements OnInit{
     this.genres = this.genreService.getAllGenres();
     this.store.dispatch(MovieActions.loadAllMovies());
     this.movies$ = this.store.pipe(select(state => state.movie.movies));
-  }
+    this.movies$.subscribe(movies => {
+      this.totalItems = movies.length;
+      this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    });  }
   searchMovies(): void {
     if (this.searchTerm) {
       this.store.dispatch(MovieActions.searchMoviesByName({ name: this.searchTerm }));
@@ -45,6 +52,22 @@ export class MoviesListComponent implements OnInit{
       this.store.dispatch(MovieActions.loadMovieByCategory({ category: this.selectedGenre }));
     } else{
       this.store.dispatch(MovieActions.loadAllMovies());
+    }
+  }
+
+  getPaginatedMovies(): Observable<Movie[]> {
+    return this.movies$.pipe(
+      map(movies => movies.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage))
+    );
+  }
+
+  nextPage(): void {
+    this.currentPage++;
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
     }
   }
 
