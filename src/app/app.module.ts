@@ -24,6 +24,11 @@ import {movieReducer} from "./state/movie/movie-reducer";
 import {MovieEffect} from "./state/movie/movie-effect";
 import { MoviesGalleryComponent } from './component/front/movies-gallery/movies-gallery.component';
 import { MovieDetailComponent } from './component/front/movie-detail/movie-detail.component';
+import {VgCoreModule} from "@videogular/ngx-videogular/core";
+import {VgControlsModule} from "@videogular/ngx-videogular/controls";
+import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
+import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
+import { MoviesListComponent } from './component/dashboard/movie/movies-list/movies-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,7 @@ import { MovieDetailComponent } from './component/front/movie-detail/movie-detai
     LatestMoviesComponent,
     MoviesGalleryComponent,
     MovieDetailComponent,
+    MoviesListComponent,
 
   ],
   imports: [
@@ -52,7 +58,11 @@ import { MovieDetailComponent } from './component/front/movie-detail/movie-detai
     StoreModule.forRoot({user: userReducer, movie: movieReducer}, {}),
     EffectsModule.forRoot([UserEffect, MovieEffect]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
-    FormsModule
+    FormsModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

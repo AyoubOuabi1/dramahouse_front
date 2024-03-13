@@ -1,0 +1,52 @@
+<div>
+  <div class="d-flex justify-content-between">
+    <h3 class="text-dark mb-4">Movies</h3>
+    <a href="#"><button type="button" class="btn btn-primary" >Add new Movie </button></a>
+
+  </div>
+  <div class="card shadow">
+    <div class="card-header py-3">
+      <p class="text-primary m-0 fw-bold">Movies Info</p>
+
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 text-nowrap">
+
+        </div>
+        <div class="col-md-6">
+          <div  class="text-md-end dataTables_filter"><label class="form-label"><input
+            class="form-control form-control-sm" (click)="searchMovies()" id="movieTable_filter" type="search" aria-controls="dataTable"
+            placeholder="Search by name"/></label></div>
+        </div>
+      </div>
+      <div  class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+        <table id="dataTable" class="table my-0">
+          <thead>
+          <tr>
+            <th>Banner</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>language</th>
+            <th>duration</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody >
+          <tr *ngFor="let movie of movies$ | async">
+            <td><img src="{{movie.posterUrl}}" alt="banner" width="50" height="50"></td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.releaseDate}}</td>
+            <td>{{movie.language}}</td>
+            <td>{{movie.duration}}</td>
+            <td><a href="#"><button type="button" class="btn btn-primary">Edit </button></a></td>
+            <td><a href="#"><button type="button" class="btn btn-danger" >Delete </button></a></td>
+          </tbody>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

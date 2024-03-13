@@ -8,6 +8,7 @@ import { RegisterFormComponent } from './component/register-form/register-form.c
 import {LatestMoviesComponent} from "./component/front/latest-movies/latest-movies.component";
 import {MoviesGalleryComponent} from "./component/front/movies-gallery/movies-gallery.component";
 import {MovieDetailComponent} from "./component/front/movie-detail/movie-detail.component";
+import {MoviesListComponent} from "./component/dashboard/movie/movies-list/movies-list.component";
 
 const routes: Routes = [
   {
@@ -30,7 +31,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'movies',
+        component: MoviesListComponent
+      }
+    ]
   },
   {
     path: 'auth',

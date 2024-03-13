@@ -1,50 +1,138 @@
-<div *ngIf="movie$ | async as movieData" class="background-image" [style.background]="'url(' + movieData.coverUrl + ')'">
-  <!-- Your movie details here -->
-  <div class="p-5 text-white rounded-3 mb-3">
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
-          <img [src]="movieData.posterUrl" class="img-fluid" style="height: 50vh; width: 30vh" id="poster_slider" />
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
-          <h1 class="display-4">
-            <i class="me-2 text-warning" style="font-size: 1.5rem;"></i>{{ movieData.title }}
-          </h1>
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
-              <h4 class="d-flex align-items-center">
-                <i class="fas fa-calendar-alt me-2 text-warning" style="font-size: 1.5rem;"></i>
-                <strong id="yearr" class="mt-2" style="font-size: 1.5rem;">{{ movieData.releaseDate }}</strong>
-              </h4>
-            </div>
+<div *ngIf="movie$ | async as movieData">
+  <div class="background-image" [style.background]="'url(' + movieData.coverUrl + ')'">
+    <div class="p-5 text-white rounded-3 mb-3">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+            <img [src]="movieData.posterUrl" class="img-fluid" style="height: 50vh; width: 30vh" id="poster_slider"/>
           </div>
-          <div class="d-flex flex-row gap-3 align-items-center">
-            <h6 class="rounded p-1" style="border: gold 1px solid" *ngFor="let genre of movieData.genres">
-              <i class="fas fa-tag me-1 text-warning" style="font-size: 1rem;"></i>{{ genre.name }}
-            </h6>
-          </div>
-          <p class="lead">{{ movieData.description }}</p>
-          <h4 class="d-flex align-items-center">
-            <i class="fas fa-clock me-2 text-warning" style="font-size: 1.5rem;"></i>
-            <strong id="duration" class="mt-2" style="font-size: 1.5rem;">{{ movieData.duration }} min</strong>
-          </h4>
-          <!-- Circular image for director -->
-          <div class="director-info d-flex align-items-center">
-            <div class="director-image me-3">
-              <img [src]="movieData.director.imageUrl" class="rounded-circle" alt="Director Image" style="width: 150px; height: 150px;">
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+            <h1 class="display-4">
+              <i class="me-2 text-warning" style="font-size: 1.5rem;"></i>{{ movieData.title }}
+            </h1>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+                <h4 class="d-flex align-items-center">
+                  <i class="fas fa-calendar-alt me-2 text-warning" style="font-size: 1.5rem;"></i>
+                  <strong id="yearr" class="mt-2" style="font-size: 1.5rem;">{{ movieData.releaseDate }}</strong>
+                </h4>
+              </div>
             </div>
-            <div class="director-name">
-              <h4 class="mb-0">Directed By</h4>
-              <p>{{ movieData.director.name }}</p>
+            <div class="d-flex flex-row gap-3 align-items-center">
+              <h6 class="rounded p-1" style="border: gold 1px solid" *ngFor="let genre of movieData.genres">
+                <i class="fas fa-tag me-1 text-warning" style="font-size: 1rem;"></i>{{ genre.name }}
+              </h6>
             </div>
-          </div>
-          <hr class="my-4">
-          <div class="d-flex flex-row gap-3">
-            <a class="btn btn-primary col-sm-6 col-md-4 col-lg-2 btn-lg mt-auto" role="button">Watch now</a>
-            <a class="btn btn-primary col-sm-6 col-md-4 col-lg-2 btn-lg mt-auto" role="button">watch trailer</a>
+            <p class="lead">{{ movieData.description }}</p>
+            <h4 class="d-flex align-items-center">
+              <i class="fas fa-clock me-2 text-warning" style="font-size: 1.5rem;"></i>
+              <strong id="duration" class="mt-2" style="font-size: 1.5rem;">{{ movieData.duration }} min</strong>
+            </h4>
+            <!-- Circular image for director -->
+            <div class="director-info d-flex align-items-center">
+              <div class="director-image me-3">
+                <img [src]="movieData.director.imageUrl" class="rounded-circle" alt="Director Image"
+                     style="width: 150px; height: 150px;">
+              </div>
+              <div class="director-name">
+                <h4 class="mb-0">Directed By</h4>
+                <p>{{ movieData.director.name }}</p>
+              </div>
+            </div>
+            <hr class="my-4">
+            <div class="d-flex flex-row gap-3">
+              <a *ngIf="!showMovieVideo" class="btn btn-primary col-sm-6 col-md-4 col-lg-2 btn-lg mt-auto" (click)="showMovieDetail()" role="button">Watch Now</a>
+              <a *ngIf="showMovieVideo" class="btn btn-primary col-sm-6 col-md-4 col-lg-2 btn-lg mt-auto" (click)="hideMovieDetail()" role="button">Hide Video</a>
+              <a class="btn btn-primary col-sm-6 col-md-4 col-lg-2 btn-lg mt-auto" data-bs-toggle="modal"
+                 data-bs-target="#trailerModal">Watch Trailer</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
+  <div class="container">
+    <div>
+      <h1 class="text-center text-white mt-5">Actors</h1>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 mt-4" *ngFor="let actor of movieData.cast ; let i = index;">
+        <div class="card movie-card">
+          <img src="{{ actor.imageUrl }}" style="height: 40vh;" class="card-img-top" alt="{{ actor.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ actor.name }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showMovieVideo" class="video-player-wrapper">
+      <h2 class="text-white text-center">Movie</h2>
+      <vg-player>
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
+        <vg-controls>
+          <vg-play-pause > </vg-play-pause>
+          <vg-playback-button></vg-playback-button>
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+          <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+          <vg-track-selector></vg-track-selector>
+          <vg-mute></vg-mute>
+          <vg-volume></vg-volume>
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+        <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin>
+          <source src="{{movieData.videoUrl}}" type="video/mp4">
+
+
+        </video>
+      </vg-player>
+    </div>
+
+  </div>
+  <div class="container">
+    <div>
+      <h1 class="text-center text-white mt-5">Related Movies</h1>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 mt-4" *ngFor="let movie of moviesList$ | async; let i = index;">
+        <div class="card movie-card">
+          <img src="{{ movie.posterUrl }}" style="height: 40vh;" class="card-img-top" alt="{{ movie.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <a class="btn btn-primary  mt-auto" (click)="watchNow(movie.id)" role="button">Watch now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background-color: hsl(216, 22%, 18%)">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="trailerModalLabel">Movie Trailer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe width="100%" height="315"
+                  [src]="getSafeUrl(movieData.trailerUrl)">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 </div>
