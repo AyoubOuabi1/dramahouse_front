@@ -23,6 +23,7 @@ import { LatestMoviesComponent } from './component/front/latest-movies/latest-mo
 import {movieReducer} from "./state/movie/movie-reducer";
 import {MovieEffect} from "./state/movie/movie-effect";
 import { MoviesGalleryComponent } from './component/front/movies-gallery/movies-gallery.component';
+import { MovieDetailComponent } from './component/front/movie-detail/movie-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MoviesGalleryComponent } from './component/front/movies-gallery/movies-
     NavbarComponent,
     LatestMoviesComponent,
     MoviesGalleryComponent,
+    MovieDetailComponent,
 
   ],
   imports: [

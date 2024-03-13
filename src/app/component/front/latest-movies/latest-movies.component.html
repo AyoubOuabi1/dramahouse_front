@@ -11,7 +11,7 @@
         <img src="{{ movie.posterUrl }}" style="height: 40vh;" class="card-img-top" alt="{{ movie.title }}">
         <div class="card-body">
           <h5 class="card-title">{{ movie.title }}</h5>
-          <a href="#" class="btn btn-primary">Watch Now</a>
+          <a class="btn btn-primary  mt-auto" (click)="watchNow(movie.id)" role="button">Watch now</a>
         </div>
       </div>
     </div>

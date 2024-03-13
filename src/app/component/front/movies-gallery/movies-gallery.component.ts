@@ -6,6 +6,7 @@ import { AppState } from "../../../state/app-state";
 import * as MovieActions from "../../../state/movie/movie-action";
 import {Genre} from "../../../entities/genre";
 import {GenreService} from "../../../service/genre/genre.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movies-gallery',
@@ -19,7 +20,8 @@ export class MoviesGalleryComponent implements OnInit {
   selectedGenre: string | null = null;
 
   constructor(private store: Store<AppState>,
-              private genreService:GenreService) {}
+              private genreService:GenreService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.genres = this.genreService.getAllGenres();
@@ -44,5 +46,7 @@ export class MoviesGalleryComponent implements OnInit {
       this.store.dispatch(MovieActions.loadAllMovies());
     }
   }
-
+  watchNow(movieId: number) {
+    this.router.navigate(['/movieDetail', movieId]);
+  }
 }
