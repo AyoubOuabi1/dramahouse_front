@@ -1,23 +1,52 @@
-<div class="p-12">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3" [formGroup]="registerForm">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input  formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden pt-5">
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start ">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <h1 class="my-5 display-5 fw-bold ls-tight">
+          Welcome to Drama House <br />
+          <span>Your ultimate movie guide</span>
+        </h1>
+        <p class="mb-4">
+          Discover new movies, watch trailers, and get information about your favorite movies and actors.
+        </p>
+      </div>
 
-        <div class="mb-3" [formGroup]="registerForm">
-            <label for="exampleInputEmail1" class="form-label">full Name</label>
-            <input  formControlName="fullName" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+        <div class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3" [formGroup]="registerForm">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input  formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text text-white">We'll never share your email with anyone else.</div>
+              </div>
+
+              <div class="mb-3" [formGroup]="registerForm">
+                <label for="exampleInputEmail1" class="form-label">full Name</label>
+                <input  formControlName="fullName" type="text" class="form-control" id="fullname" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3" [formGroup]="registerForm">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input formControlName="password"  type="password" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3 form-check" [formGroup]="registerForm">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="text-center text-md-start mt-1 pt-2">
+              <p class="mb-2 text-center">
+                <a href="#" class=" me-2 text-white ">Or</a>
+              </p>
+              <p class="mb-0">
+               Already have an account? <a href="/auth/login" class="text-primary">Login</a>
+              </p>
+            </div>
           </div>
-        <div class="mb-3" [formGroup]="registerForm"> 
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input formControlName="password"  type="password" class="form-control" id="exampleInputPassword1">
         </div>
-        <div class="mb-3 form-check" [formGroup]="registerForm">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-</div>
+      </div>
+    </div>
+  </div>
+</section>

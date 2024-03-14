@@ -1,0 +1,28 @@
+.background-radial-gradient {
+  min-height: 100vh;
+  background-color: #000;
+  background-image: url('https://dramahousee.s3.eu-west-3.amazonaws.com/background.jpg');
+  background-size: cover;
+  position: relative;
+  color: #fff;
+}
+
+.background-radial-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#radius-shape-1, #radius-shape-2 {
+  display: none;
+}
+
+.bg-glass {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: saturate(200%) blur(25px);
+  color: #fff;
+}
