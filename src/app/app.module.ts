@@ -18,7 +18,7 @@ import { HeaderComponent } from './component/front/header/header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { userReducer } from './state/user/user-reducer';
 import { UserEffect } from './state/user/user-effect';
-import { NavbarComponent } from './component/dashboard/navbar/navbar.component';
+import { SidebarComponent } from './component/dashboard/sidebar/sidebar.component';
 import { LatestMoviesComponent } from './component/front/latest-movies/latest-movies.component';
 import {movieReducer} from "./state/movie/movie-reducer";
 import {MovieEffect} from "./state/movie/movie-effect";
@@ -43,7 +43,7 @@ import { WatchListComponent } from './component/front/watch-list/watch-list.comp
     TopMoviesComponent,
     FooterComponent,
     HeaderComponent,
-    NavbarComponent,
+    SidebarComponent,
     LatestMoviesComponent,
     MoviesGalleryComponent,
     MovieDetailComponent,

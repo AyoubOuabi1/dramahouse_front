@@ -14,11 +14,11 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 })
 export class MovieDetailComponent implements OnInit {
   movie$!: Observable<Movie | null>;
-  moviesList$!: Observable<Movie[]>;
-  chekcIfMovieExistsInWatchlist$!: Observable<boolean>;
+  moviesList!: Movie[];
   firstGenre!: string;
   showMovieVideo!: boolean;
   addedToWatchList: boolean = false;
+  index!: number ;
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
@@ -40,11 +40,19 @@ export class MovieDetailComponent implements OnInit {
         }
 
       );
-      this.moviesList$ = this.store.select(state => state.movie.movies);
+      this.store.select(state => state.movie.movies).subscribe(
+        movies=>{
+          this.moviesList = movies.slice(); // Create a copy of the array
+          console.log(this.moviesList);
+          this.index = this.moviesList.findIndex(movie => movie.id === id)
+          if (this.index > -1) {
+            this.moviesList.splice(this.index, 1);
+          }
+        }
+      )
       this.store.dispatch(MovieActions.checkIfMovieExistsInWatchlist({movieId: id}));
       this.store.select(state => state.movie.exists).subscribe(
         check=>{
-          console.log(check)
           this.addedToWatchList=check;
         }
       )

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {debounceTime, Observable, Subject} from "rxjs";
 import {Movie} from "../../../../entities/movie";
 import {Genre} from "../../../../entities/genre";
 import {select, Store} from "@ngrx/store";
@@ -19,11 +19,12 @@ export class MoviesListComponent implements OnInit{
   movies$!: Observable<Movie[]>;
   genres!: Observable<Genre[]>;
   searchTerm: string = '';
-  selectedGenre: string | null = null;
   currentPage = 1;
   itemsPerPage = 10;
   totalItems = 0;
   totalPages = 0;
+  searchTermm = new Subject<string>();
+
   constructor(private store: Store<AppState>,
               private genreService:GenreService,
               private router: Router) {}
@@ -35,25 +36,21 @@ export class MoviesListComponent implements OnInit{
     this.movies$.subscribe(movies => {
       this.totalItems = movies.length;
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-    });  }
-  searchMovies(): void {
-    if (this.searchTerm) {
-      this.store.dispatch(MovieActions.searchMoviesByName({ name: this.searchTerm }));
-    } else {
-      this.store.dispatch(MovieActions.loadAllMovies());
-    }
+    });
+    this.searchTermm.pipe(
+      debounceTime(400)
+    ).subscribe(searchTerm => {
+      if (searchTerm) {
+        this.store.dispatch(MovieActions.searchMoviesByName({ name: searchTerm }));
+      } else {
+        this.store.dispatch(MovieActions.loadAllMovies());
+      }
+    });
+  }
+  searchMovies(event: any): void {
+    this.searchTermm.next(event.target.value);
   }
 
-  searchMoviesByGenre(): void {
-    console.log(this.selectedGenre);
-    if (this.selectedGenre === 'All Genre'){
-      this.store.dispatch(MovieActions.loadAllMovies());
-    } else if (this.selectedGenre) {
-      this.store.dispatch(MovieActions.loadMovieByCategory({ category: this.selectedGenre }));
-    } else{
-      this.store.dispatch(MovieActions.loadAllMovies());
-    }
-  }
 
   getPaginatedMovies(): Observable<Movie[]> {
     return this.movies$.pipe(

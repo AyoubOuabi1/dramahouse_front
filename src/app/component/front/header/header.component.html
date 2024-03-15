@@ -12,16 +12,16 @@
         <li class="nav-item">
           <a class="nav-link" href="/gallery">Gallery</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="checkIfUserIsLoggedIn()">
           <a class="nav-link" href="/watch-list">Watch List</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/favourite">Favourite</a>
-        </li>
       </ul>
-      <form class="d-flex" role="search">
-        <button class="btn btn-outline-success" type="submit">Login</button>
+      <form class="d-flex">
+        <button *ngIf="!checkIfUserIsLoggedIn()" (click)="login()" class="btn btn-outline-success" type="submit">Login</button>
+        <button *ngIf="checkIfUserIsLoggedIn()" (click)="logout()" class="btn btn-outline-success" type="submit">Logout</button>
       </form>
     </div>
   </div>
 </nav>
+
+

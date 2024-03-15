@@ -10,6 +10,7 @@ import {MoviesGalleryComponent} from "./component/front/movies-gallery/movies-ga
 import {MovieDetailComponent} from "./component/front/movie-detail/movie-detail.component";
 import {MoviesListComponent} from "./component/dashboard/movie/movies-list/movies-list.component";
 import {WatchListComponent} from "./component/front/watch-list/watch-list.component";
+import {checkLoginGuard} from "./guard/check-login.guard";
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
       },
       {
         path: 'watch-list',
-        component: WatchListComponent
+        component: WatchListComponent,
+        canActivate : [checkLoginGuard]
       },
       {
         path: 'movieDetail/:id',

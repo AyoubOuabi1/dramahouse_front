@@ -1,8 +1,34 @@
-<div class="d-flex">
-  <app-navbar>
+<div class="bodyDiv">
+  <div class='dashboard'>
+    <div class="dashboard-nav">
+      <header>
+        <a  class="menu-toggle"><i class="fas fa-bars">
 
-  </app-navbar>
-  <div id="page-content-wrapper" >
-    <router-outlet></router-outlet>
+        </i></a><a
+                   class="brand-logo"><i
+        class="fas fa-anchor"></i> <span>Drama House</span></a>
+      </header>
+      <nav class="dashboard-nav-list">
+        <a href="/dashboard/movies" class="dashboard-nav-item active">
+          <i class="fas fa-tachometer-alt"></i> Movies</a>
+        <a href="/dashboard" class="dashboard-nav-item">
+          <i class="fas fa-file-upload"></i> Actors </a>
+
+        <a href="/dashboard" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Genre </a><a
+          href="/dashboard" class="dashboard-nav-item"><i class="fas fa-user"></i> Users </a>
+        <div class="nav-item-divider"></div>
+        <a
+          href="/dashboard" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+      </nav>
+    </div>
+    <div class='dashboard-app'>
+      <header class='dashboard-toolbar'><a  class="menu-toggle"><i class="fas fa-bars"></i></a></header>
+      <div class='dashboard-content'>
+        <div class='container-fluid'>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
   </div>
+
 </div>

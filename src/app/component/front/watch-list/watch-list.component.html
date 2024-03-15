@@ -13,8 +13,8 @@
       <div class="card movie-card">
         <img src="{{ movie.posterUrl }}" style="height: 40vh;" class="card-img-top" alt="{{ movie.title }}">
         <div class="card-body">
-          <h5 class="card-title">{{ movie.title }}</h5>
-          <a class="btn btn-primary  mt-auto" (click)="watchNow(movie.id)" role="button">Watch now</a>
+          <h5 class="card-title" title="{{movie.title}}">{{ movie.title.substring(0,20) }}</h5>
+          <a class="btn  mt-auto" style="background-color: gold"  (click)="watchNow(movie.id)" role="button">Watch now</a>
         </div>
       </div>
     </div>
