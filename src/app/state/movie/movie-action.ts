@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { Movie } from "../../entities/movie";
+import {WatchlistRes} from "../../entities/watchlist-res";
 
 export const loadAllMovies = createAction('[Movie] Load All Movies');
 
@@ -96,5 +97,67 @@ export const loadLastTenMoviesSuccess = createAction(
 
 export const loadLastTenMoviesFailure = createAction(
   '[Movie] Load Last Ten Movies Failure',
+  props<{ errorMessage: string }>()
+);
+
+
+export const addMovieToWatchlist = createAction(
+  '[Movie] Add Movie To Watchlist',
+  props<{ movieId : number }>()
+);
+
+export const addMovieToWatchlistSuccess = createAction(
+  '[Movie] Add Movie To Watchlist Success',
+  props<{ message: string }>()
+);
+
+export const addMovieToWatchlistFailure = createAction(
+  '[Movie] Add Movie To Watchlist Failure',
+  props<{ errorMessage: string }>()
+);
+
+
+
+export const checkIfMovieExistsInWatchlist = createAction(
+  '[Movie] Check If Movie Exists In Watchlist',
+  props<{ movieId: number }>()
+);
+
+export const checkIfMovieExistsInWatchlistSuccess = createAction(
+  '[Movie] Check If Movie Exists In Watchlist Success',
+  props<{ exists: boolean }>()
+);
+
+export const checkIfMovieExistsInWatchlistFailure = createAction(
+  '[Movie] Check If Movie Exists In Watchlist Failure',
+  props<{ errorMessage: string }>()
+);
+
+
+export const loadWatchlist = createAction('[WatchList] Load Watchlist');
+
+
+export const loadWatchlistSuccess = createAction(
+  '[WatchList] Load Watchlist Success',
+  props<{ watchlist: WatchlistRes }>()
+);
+
+export const loadWatchlistFailure = createAction(
+  '[WatchList] Load Watchlist Failure',
+  props<{ errorMessage: string }>()
+);
+
+export const deleteMovieFromWatchlist = createAction(
+  '[WatchList] Delete Movie From Watchlist',
+  props<{ movieId: number }>()
+);
+
+export const deleteMovieFromWatchlistSuccess = createAction(
+  '[WatchList] Delete Movie From Watchlist Success'
+);
+
+export const deleteMovieFromWatchlistFailure = createAction(
+
+  '[WatchList] Delete Movie From Watchlist Failure',
   props<{ errorMessage: string }>()
 );

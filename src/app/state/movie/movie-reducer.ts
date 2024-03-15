@@ -90,5 +90,44 @@ export const movieReducer = createReducer(
     error: errorMessage
   })),
 
+  on(MovieActions.addMovieToWatchlistSuccess, (state, { message }) => ({
+    ...state,
+    message,
+    error: null
+    }
+  )),
+
+  on(MovieActions.addMovieToWatchlistFailure, (state, { errorMessage }) => ({
+    ...state,
+    error: errorMessage
+  })),
+
+  on(MovieActions.checkIfMovieExistsInWatchlistSuccess, (state, { exists }) => ({
+    ...state,
+    exists,
+    error: null
+  })),
+
+  on(MovieActions.checkIfMovieExistsInWatchlistFailure, (state, { errorMessage }) => ({
+    ...state,
+    error: errorMessage
+  })),
+
+  on(MovieActions.deleteMovieFromWatchlistSuccess, (state) => ({
+    ...state,
+    error: null
+  })),
+
+  on(MovieActions.deleteMovieFromWatchlistFailure, (state, { errorMessage }) => ({
+    ...state,
+    error: errorMessage
+  })),
+  on(MovieActions.loadWatchlistSuccess, (state, { watchlist }) => ({
+    ...state,
+    watchlist,
+    error: null
+  })),
+
+
 
 );

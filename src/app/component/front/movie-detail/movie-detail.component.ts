@@ -15,8 +15,10 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 export class MovieDetailComponent implements OnInit {
   movie$!: Observable<Movie | null>;
   moviesList$!: Observable<Movie[]>;
+  chekcIfMovieExistsInWatchlist$!: Observable<boolean>;
   firstGenre!: string;
   showMovieVideo!: boolean;
+  addedToWatchList: boolean = false;
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
@@ -32,7 +34,6 @@ export class MovieDetailComponent implements OnInit {
       this.movie$.subscribe(
         movie=>{
           if(movie){
-            console.log(movie.trailerUrl);
             this.firstGenre = movie.genres[0].name;
             this.store.dispatch(MovieActions.loadMovieByCategory({ category: this.firstGenre }));
           }
@@ -40,6 +41,13 @@ export class MovieDetailComponent implements OnInit {
 
       );
       this.moviesList$ = this.store.select(state => state.movie.movies);
+      this.store.dispatch(MovieActions.checkIfMovieExistsInWatchlist({movieId: id}));
+      this.store.select(state => state.movie.exists).subscribe(
+        check=>{
+          console.log(check)
+          this.addedToWatchList=check;
+        }
+      )
     });
   }
   watchNow(movieId: number) {
@@ -56,4 +64,14 @@ export class MovieDetailComponent implements OnInit {
     this.showMovieVideo = false
   }
 
+  addToWatchList(movieId : number) {
+    this.store.dispatch(MovieActions.addMovieToWatchlist({movieId}));
+    this.addedToWatchList  = true;
+
+  }
+
+  removeFromWatchList(movieId: number) {
+    this.store.dispatch(MovieActions.deleteMovieFromWatchlist({movieId}));
+    this.addedToWatchList = false;
+  }
 }

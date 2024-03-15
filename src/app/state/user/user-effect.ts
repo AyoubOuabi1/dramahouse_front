@@ -23,7 +23,7 @@ export class UserEffect {
         ofType(UserActions.register),
         mergeMap(action => this.authService.register(action.user).pipe(
             map(user => {
-                this.localStorageService.setToken(user.accessToken); // Call the saveToLocalStorage method from the LocalStorgeService
+                this.localStorageService.setUser(user);
                 return UserActions.registerSuccess({user});
             }),
             catchError((errorMessage) => [UserActions.registerFailure({errorMessage})])
@@ -39,7 +39,10 @@ export class UserEffect {
     login$ = createEffect(() => this.actions$.pipe(
         ofType(UserActions.login),
         mergeMap(action => this.authService.login(action.user).pipe(
-            map(user => UserActions.loginSuccess({user})),
+            map(user => {
+              this.localStorageService.setUser(user);
+              return  UserActions.loginSuccess({user})
+            }),
             catchError((errorMessage) => [UserActions.loginFailure({errorMessage})])
         ))
     ));

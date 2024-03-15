@@ -12,7 +12,8 @@ import { TokenRes } from '../../entities/token-res';
 })
 export class AuthenticatonServiceService {
 
-  private readonly URL_BASE = environment.apiUrl+"auth/";
+ // private readonly URL_BASE = environment.apiUrl+"auth/";
+  private readonly URL_BASE = "http://localhost:8081/api/v1/auth/";
 
   constructor(private _http : HttpClient) {}
 

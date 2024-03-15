@@ -1,6 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './layout/home/home.component';
@@ -29,6 +29,8 @@ import {VgControlsModule} from "@videogular/ngx-videogular/controls";
 import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
 import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
 import { MoviesListComponent } from './component/dashboard/movie/movies-list/movies-list.component';
+import {TokenCheckInterceptor} from "./interceptor/token-check.interceptor";
+import { WatchListComponent } from './component/front/watch-list/watch-list.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { MoviesListComponent } from './component/dashboard/movie/movies-list/mov
     MoviesGalleryComponent,
     MovieDetailComponent,
     MoviesListComponent,
+    WatchListComponent,
 
   ],
   imports: [
@@ -64,7 +67,11 @@ import { MoviesListComponent } from './component/dashboard/movie/movies-list/mov
     VgOverlayPlayModule,
     VgBufferingModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenCheckInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

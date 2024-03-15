@@ -19,7 +19,7 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this._fb.group({
-      fullName: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -43,6 +43,6 @@ export class RegisterFormComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private _fb: FormBuilder,
-    
+
     ) {}
 }

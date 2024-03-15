@@ -13,10 +13,11 @@ export class TokenCheckInterceptor implements HttpInterceptor {
 
   constructor(private localService : LocalStorgeServiceService) {}
 
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    const token = this.localService.getToken();
-
+    const token = this.localService.getUserToken();
+      console.log(token)
     if(token){
 
 

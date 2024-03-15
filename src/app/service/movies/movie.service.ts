@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Movie} from "../../entities/movie";
+import {WatchlistRes} from "../../entities/watchlist-res";
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +45,6 @@ export class MovieService {
     const url = `${this.apiUrl}/last-ten`;
     return this.http.get<Movie[]>(url);
   }
+
+
 }

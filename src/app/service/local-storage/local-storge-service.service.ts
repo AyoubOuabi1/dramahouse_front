@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
+import {AuthResponse} from "../../entities/auth-response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorgeServiceService {
 
-  
-  setToken(token:string){
-    localStorage.setItem('token', token);
+  responseString : string | null = localStorage.getItem('user');
+  response: AuthResponse = this.responseString ? JSON.parse(this.responseString) : {};
+
+
+  setUser(user:AuthResponse){
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getToken(): any {
-     return localStorage.getItem('token'); 
-  }
+  getUserToken(): string | null {
+    return this.response.accessToken;
 
-  getUserInfo() {
-    return localStorage.getItem('userInfo');
-  }
-
-  setUserInfo(userInfo: any): void {
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
   }
 
 

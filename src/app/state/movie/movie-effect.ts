@@ -5,9 +5,13 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../app-state";
 import {catchError, map, mergeMap} from "rxjs/operators";
 import * as MovieActions from "./movie-action";
+import {WatchListService} from "../../service/watchlist/watch-list.service";
+import {addMovieToWatchlistSuccess} from "./movie-action";
+import {of} from "rxjs";
 @Injectable()
 export class MovieEffect{
     constructor(private movieService: MovieService,
+                private watchListService: WatchListService,
                 private actions$: Actions
     ) {
     }
@@ -83,5 +87,51 @@ export class MovieEffect{
       ))
     );
   });
+
+  addMovieToWatchList$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MovieActions.addMovieToWatchlist),
+      mergeMap((action) => this.watchListService.addMovieToWatchList(action.movieId).pipe(
+        map(message => MovieActions.addMovieToWatchlistSuccess({message})),
+        catchError((errorMessage) => [MovieActions.addMovieToWatchlistFailure({errorMessage})])
+      ))
+    );
+  });
+
+  checkIfMovieExistsInWatchlist$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieActions.checkIfMovieExistsInWatchlist),
+      mergeMap(action =>
+        this.watchListService.checkIfMovieExistsInWatchlist(action.movieId).pipe(
+          map(exists => MovieActions.checkIfMovieExistsInWatchlistSuccess({ exists })),
+          catchError(error => [MovieActions.checkIfMovieExistsInWatchlistFailure({ errorMessage: error })])
+        )
+      )
+    )
+  );
+
+  removeMovieFromWatchlist$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieActions.deleteMovieFromWatchlist),
+      mergeMap(action =>
+        this.watchListService.removeMovieFromWatchlist(action.movieId).pipe(
+          map(() => MovieActions.deleteMovieFromWatchlistSuccess()),
+          catchError(error => [MovieActions.deleteMovieFromWatchlistFailure({ errorMessage: error })])
+        )
+      )
+    )
+  );
+
+  loadWatchlist$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieActions.loadWatchlist),
+      mergeMap(() =>
+        this.watchListService.loadWatchList().pipe(
+          map(watchlist => MovieActions.loadWatchlistSuccess({ watchlist })),
+          catchError(error => [MovieActions.loadWatchlistFailure({ errorMessage: error })])
+        )
+      )
+    )
+  );
 
 }

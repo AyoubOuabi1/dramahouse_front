@@ -9,6 +9,7 @@ import {LatestMoviesComponent} from "./component/front/latest-movies/latest-movi
 import {MoviesGalleryComponent} from "./component/front/movies-gallery/movies-gallery.component";
 import {MovieDetailComponent} from "./component/front/movie-detail/movie-detail.component";
 import {MoviesListComponent} from "./component/dashboard/movie/movies-list/movies-list.component";
+import {WatchListComponent} from "./component/front/watch-list/watch-list.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'gallery',
         component: MoviesGalleryComponent
+      },
+      {
+        path: 'watch-list',
+        component: WatchListComponent
       },
       {
         path: 'movieDetail/:id',
