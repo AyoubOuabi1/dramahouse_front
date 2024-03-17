@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Movie} from "../../entities/movie";
 import {WatchlistRes} from "../../entities/watchlist-res";
+import {MovieRequest} from "../../entities/movie-request";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class MovieService {
     return this.http.get<Movie>(url);
   }
 
-  addMovie(movie: Movie): Observable<Movie> {
+  addMovie(movie: MovieRequest | FormData): Observable<Movie> {
     return this.http.post<Movie>(this.apiUrl, movie);
   }
 

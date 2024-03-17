@@ -11,6 +11,7 @@ import {MovieDetailComponent} from "./component/front/movie-detail/movie-detail.
 import {MoviesListComponent} from "./component/dashboard/movie/movies-list/movies-list.component";
 import {WatchListComponent} from "./component/front/watch-list/watch-list.component";
 import {checkLoginGuard} from "./guard/check-login.guard";
+import {NewMovieComponent} from "./component/dashboard/movie/new-movie/new-movie.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: 'movies',
         component: MoviesListComponent
+      },
+      {
+        path: 'add-movie',
+        component: NewMovieComponent
       }
     ]
   },

@@ -31,6 +31,16 @@ import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
 import { MoviesListComponent } from './component/dashboard/movie/movies-list/movies-list.component';
 import {TokenCheckInterceptor} from "./interceptor/token-check.interceptor";
 import { WatchListComponent } from './component/front/watch-list/watch-list.component';
+import { NewMovieComponent } from './component/dashboard/movie/new-movie/new-movie.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatButtonModule} from "@angular/material/button";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
+import {PersonEffect} from "./state/person/peron-effect";
+import {personReducer} from "./state/person/person-reducer";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 @NgModule({
   declarations: [
@@ -49,6 +59,7 @@ import { WatchListComponent } from './component/front/watch-list/watch-list.comp
     MovieDetailComponent,
     MoviesListComponent,
     WatchListComponent,
+    NewMovieComponent,
 
   ],
   imports: [
@@ -57,15 +68,23 @@ import { WatchListComponent } from './component/front/watch-list/watch-list.comp
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NoopAnimationsModule,
-    StoreModule.forRoot({user: userReducer, movie: movieReducer}, {}),
-    EffectsModule.forRoot([UserEffect, MovieEffect]),
+    StoreModule.forRoot({user: userReducer, movie: movieReducer, person: personReducer}, {}),
+    EffectsModule.forRoot([UserEffect, MovieEffect, PersonEffect]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     FormsModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    NgSelectModule,
+    NgMultiSelectDropDownModule.forRoot()
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -74,4 +93,6 @@ import { WatchListComponent } from './component/front/watch-list/watch-list.comp
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

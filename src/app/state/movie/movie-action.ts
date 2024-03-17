@@ -1,6 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { Movie } from "../../entities/movie";
 import {WatchlistRes} from "../../entities/watchlist-res";
+import {MovieRequest} from "../../entities/movie-request";
 
 export const loadAllMovies = createAction('[Movie] Load All Movies');
 
@@ -46,7 +47,7 @@ export const loadMovieByIdFailure = createAction(
 
 export const addMovie = createAction(
   '[Movie] Add Movie',
-  props<{ movie: Movie }>()
+  props<{ movie: FormData }>()
 );
 
 export const addMovieSuccess = createAction(
