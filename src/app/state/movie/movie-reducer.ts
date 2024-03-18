@@ -68,9 +68,15 @@ export const movieReducer = createReducer(
     ...state,
     error: errorMessage
   })),
-
-  on(MovieActions.deleteMovieSuccess, (state) => ({
+  on(MovieActions.updateMovieSuccess, (state, { movie }) => ({
     ...state,
+    movies: state.movies.map(m => m.id === movie.id ? movie : m),
+    error: null
+  })),
+
+  on(MovieActions.deleteMovieSuccess, (state, { id }) => ({
+    ...state,
+    movies: state.movies.filter(movie => movie.id !== id),
     error: null
   })),
 

@@ -43,8 +43,8 @@
                  <td>{{movie.releaseDate}}</td>
                  <td>{{movie.language}}</td>
                  <td>{{movie.duration}}</td>
-                 <td><a href="#"><button type="button" class="btn btn-primary">Edit </button></a></td>
-                 <td><a href="#"><button type="button" class="btn btn-danger" >Delete </button></a></td>
+                 <td><button type="button" class="btn btn-success" (click)="view(movie.id)" >View </button></td>
+                 <td><button type="button" class="btn btn-danger" (click)="deleteMovie(movie.id)">Delete </button></td>
                </tr>
                </tbody>
              </table>

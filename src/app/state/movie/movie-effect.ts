@@ -68,11 +68,21 @@ export class MovieEffect{
     );
   });
 
+  updateMovie$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MovieActions.updateMovie),
+      mergeMap((action) => this.movieService.updateMovie(action.movie).pipe(
+        map(movie => MovieActions.updateMovieSuccess({movie})),
+        catchError((errorMessage) => [MovieActions.updateMovieFailure({errorMessage})])
+      ))
+    );
+  });
+
   deleteMovie$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MovieActions.deleteMovie),
       mergeMap((action) => this.movieService.deleteMovie(action.id).pipe(
-        map(() => MovieActions.deleteMovieSuccess()),
+        map(() => MovieActions.deleteMovieSuccess({id: action.id})),
         catchError((errorMessage) => [MovieActions.deleteMovieFailure({errorMessage})])
       ))
     );

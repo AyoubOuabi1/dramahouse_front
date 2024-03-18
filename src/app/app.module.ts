@@ -41,6 +41,8 @@ import {MatInputModule} from "@angular/material/input";
 import {PersonEffect} from "./state/person/peron-effect";
 import {personReducer} from "./state/person/person-reducer";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {NgxSpinnerModule} from "ngx-spinner";
+import { SelectedMovieComponent } from './component/dashboard/movie/selected-movie/selected-movie.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     MoviesListComponent,
     WatchListComponent,
     NewMovieComponent,
+    SelectedMovieComponent,
 
   ],
   imports: [
@@ -83,7 +86,8 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     VgOverlayPlayModule,
     VgBufferingModule,
     NgSelectModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxSpinnerModule
 
   ],
   providers: [{

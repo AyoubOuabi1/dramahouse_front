@@ -26,7 +26,10 @@ export class MovieService {
   addMovie(movie: MovieRequest | FormData): Observable<Movie> {
     return this.http.post<Movie>(this.apiUrl, movie);
   }
-
+  updateMovie(movie: MovieRequest | FormData): Observable<Movie> {
+    const url = this.apiUrl;
+    return this.http.put<Movie>(url, movie);
+  }
   deleteMovie(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);

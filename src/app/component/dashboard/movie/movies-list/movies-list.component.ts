@@ -8,7 +8,7 @@ import {GenreService} from "../../../../service/genre/genre.service";
 import {Router} from "@angular/router";
 import * as MovieActions from "../../../../state/movie/movie-action";
 import {map} from "rxjs/operators";
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
@@ -68,4 +68,34 @@ export class MoviesListComponent implements OnInit{
     }
   }
 
+  deleteMovie(id: number): void {
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: 'You will not be able to recover this movie!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.store.dispatch(MovieActions.deleteMovie({ id }));
+        Swal.fire(
+          'Deleted!',
+          'the movie has been deleted.',
+          'success'
+        )
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'the movie is safe :)',
+          'error'
+        )
+      }
+    })
+
+  }
+  view(movieId: number) {
+    this.router.navigate(['/dashboard/selected-movie', movieId]);
+  }
 }

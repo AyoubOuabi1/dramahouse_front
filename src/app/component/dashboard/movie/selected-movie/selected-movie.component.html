@@ -1,46 +1,64 @@
 <div class="card shadow">
   <div class="card-header py-3">
-    <p class="text-primary m-0 fw-bold">Add new Movie</p>
+    <p class="text-primary m-0 fw-bold">update Movie</p>
   </div>
   <div class="card-body">
     <ngx-spinner bdOpacity="0.5" bdColor="rgba(0, 0, 0, 0.5)" size="medium" type="ball-clip-rotate-multiple">
-      <p style="color: white">Adding video please wait Loading...</p>
+      <p style="color: white">updating video please wait Loading...</p>
     </ngx-spinner>
 
     <div class="row">
-      <form (ngSubmit)="onSubmit()" [formGroup]="movieForm" enctype="multipart/form-data">
+      <form  [formGroup]="movieForm" enctype="multipart/form-data">
         <div class="form-group bg-light border rounded-3 p-3 mt-3 row">
+          <input type="text" class="form-control" id="id" formControlName="id" hidden="hidden">
           <div class="col-sm-6">
-            <label for="name">Movie Name</label>
-            <input type="text" class="form-control" id="name" formControlName="title"
+            <label for="title">Movie Name</label>
+            <input type="text" class="form-control" id="title" formControlName="title"
                    placeholder="Enter movie name">
 
           </div>
           <div class="col-sm-6">
-            <label for="videoFile" class="form-label">Video</label>
-            <input class="form-control" type="file" id="videoFile" formControlName="videoFile" (change)="onFileChange($event, 'videoFile')">
+            <label for="trailer_video">Trailer Video Link</label>
+            <input type="text" class="form-control" id="trailer_video" formControlName="trailerUrl"
+                   placeholder="Enter trailer video link">
 
           </div>
         </div>
 
         <div class="form-group bg-light border rounded-3 p-3 mt-3 row">
-          <div class="col-sm-4">
-            <label for="poster_image" class="form-label">Poster Image </label>
-            <input class="form-control" type="file" id="poster_image" formControlName="posterFile" (change)="onFileChange($event, 'posterFile')">
+          <div class="row">
+            <div class="col-sm-4 d-flex align-content-center">
+              <img [src]="posterUrl" alt="poster url" height="200" width="200">
+            </div>
 
+            <div class="col-sm-4">
+              <img [src]="coverUrl" alt="cover url" height="200" width="450">
+            </div>
+
+            <div class="col-sm-4">
+              <video *ngIf="videoUrl" width="450" height="200" controls>
+                <source [src]="videoUrl" type="video/mp4">
+              </video>
+            </div>
           </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label for="poster_image" class="form-label">Poster Image </label>
+              <input class="form-control" type="file" id="poster_image" formControlName="posterFile" (change)="onFileChange($event, 'posterFile')">
 
-          <div class="col-sm-4">
-            <label for="cover_image" class="form-label">Cover Image </label>
-            <input class="form-control" type="file" id="cover_image" formControlName="coverFile" (change)="onFileChange($event, 'coverFile')">
+            </div>
 
-          </div>
+            <div class="col-sm-4">
+              <label for="cover_image" class="form-label">Cover Image </label>
+              <input class="form-control" type="file" id="cover_image" formControlName="coverFile" (change)="onFileChange($event, 'coverFile')">
 
-          <div class="col-sm-4">
-            <label for="trailer_video">Trailer Video Link</label>
-            <input type="text" class="form-control" id="trailer_video" formControlName="trailerUrl"
-                   placeholder="Enter trailer video link">
+            </div>
 
+            <div class="col-sm-4">
+              <label for="videoFile" class="form-label">Video</label>
+              <input class="form-control" type="file" id="videoFile" formControlName="videoFile" (change)="onFileChange($event, 'videoFile')">
+
+            </div>
           </div>
         </div>
 
@@ -61,12 +79,14 @@
 
         <div class="form-group bg-light border rounded-3 p-3 mt-3 row">
           <div class="col-sm-6">
-            <label for="directorId">Director</label>
-            <select class="form-control" id="directorId" formControlName="directorId">
-              <option [selected]="true">Select Director</option>
-              <option *ngFor="let actor of person$ | async" [value]="actor.id">{{ actor.name }}</option>
-            </select>
-
+            <label>Director</label>
+            <ng-multiselect-dropdown
+              [placeholder]="'Select Derictor'"
+              [data]="personData"
+              formControlName="directorId"
+              [disabled]="false"
+              [settings]="dropdownSettingsSingle">
+            </ng-multiselect-dropdown>
           </div>
 
           <div class="col-sm-6">
@@ -102,13 +122,13 @@
               [data]="personData"
               formControlName="cast"
               [disabled]="false"
-            [settings]="dropdownSettings">
+              [settings]="dropdownSettings">
             </ng-multiselect-dropdown>
           </div>
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-primary" (click)="updateMovie()">update</button>
         </div>
       </form>
     </div>

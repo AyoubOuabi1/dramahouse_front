@@ -8,7 +8,8 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../../../../state/app-state";
 import * as PersionActions from "../../../../state/person/person-action";
 import * as MovieActions from "../../../../state/movie/movie-action";
-import {MovieService} from "../../../../service/movies/movie.service";
+import Swal from "sweetalert2";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-new-movie',
@@ -28,7 +29,7 @@ export class NewMovieComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private genreService: GenreService,
               private store : Store<AppState>,
-              private movieService : MovieService) { }
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.movieForm = this.fb.group({
@@ -52,6 +53,7 @@ export class NewMovieComponent implements OnInit {
 
   onSubmit(): void {
     if (this.movieForm.valid) {
+      this.spinner.show();
       const formData = new FormData();
       Object.keys(this.movieForm.controls).forEach(key => {
         if (this.fileInputs[key]) {
@@ -68,8 +70,14 @@ export class NewMovieComponent implements OnInit {
 
       formData.append('genres', formValue.genres.join(','));
       formData.append('cast', formValue.cast.join(','));
-      this.consoleFormData(formData);
       this.store.dispatch(MovieActions.addMovie({ movie: formData }));
+      this.store.select('movie').subscribe(() => {
+        setTimeout(() => {
+          this.spinner.hide(); // Hide the spinner after a delay
+          Swal.fire("Movie Added Successfully", "", "success");
+        }, 1000);
+
+      });
       this.movieForm.reset()
     }
   }

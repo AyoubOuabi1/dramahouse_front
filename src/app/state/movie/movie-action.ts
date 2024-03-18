@@ -66,11 +66,26 @@ export const deleteMovie = createAction(
 );
 
 export const deleteMovieSuccess = createAction(
-  '[Movie] Delete Movie Success'
+  '[Movie] Delete Movie Success',
+  props<{ id: number }>()
 );
 
 export const deleteMovieFailure = createAction(
   '[Movie] Delete Movie Failure',
+  props<{ errorMessage: string }>()
+);
+export const updateMovie = createAction(
+  '[Movie] Update Movie',
+  props<{ movie: FormData }>()
+);
+
+export const updateMovieSuccess = createAction(
+  '[Movie] Update Movie Success',
+  props<{ movie: Movie }>()
+);
+
+export const updateMovieFailure = createAction(
+  '[Movie] Update Movie Failure',
   props<{ errorMessage: string }>()
 );
 

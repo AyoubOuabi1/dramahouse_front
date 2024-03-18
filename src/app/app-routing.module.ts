@@ -12,6 +12,7 @@ import {MoviesListComponent} from "./component/dashboard/movie/movies-list/movie
 import {WatchListComponent} from "./component/front/watch-list/watch-list.component";
 import {checkLoginGuard} from "./guard/check-login.guard";
 import {NewMovieComponent} from "./component/dashboard/movie/new-movie/new-movie.component";
+import {SelectedMovieComponent} from "./component/dashboard/movie/selected-movie/selected-movie.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
       {
         path: 'add-movie',
         component: NewMovieComponent
+      },
+      {
+        path: 'selected-movie/:id',
+        component:SelectedMovieComponent
       }
     ]
   },
