@@ -30,4 +30,8 @@ export class PersonService {
   deletePerson(id: number) : Observable<Person> {
     return this.httpClient.delete<Person>(`${this.url}/${id}`);
   }
+
+  searchPersonByName(name: string) : Observable<Person[]> {
+    return this.httpClient.get<Person[]>(`${this.url}/search?name=${name}`);
+  }
 }

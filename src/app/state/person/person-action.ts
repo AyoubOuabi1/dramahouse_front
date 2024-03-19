@@ -75,3 +75,32 @@ export const deletePersonFailure = createAction(
   props<{ errorMessage: string }>()
 );
 
+export const findPersonByName = createAction(
+  '[Person] Find Person By Name',
+  props<{ name: string }>()
+);
+
+export const findPersonByNameSuccess = createAction(
+  '[Person] Find Person By Name Success',
+  props<{ persons: Person[] }>()
+);
+
+export const findPersonByNameFailure = createAction(
+  '[Person] Find Person By Name Failure',
+  props<{ errorMessage: string }>()
+);
+
+export const deletePersonById = createAction(
+  '[Person] Delete Person By Id',
+  props<{ id: number }>()
+);
+
+export const deletePersonByIdSuccess = createAction(
+  '[Person] Delete Person By Id Success',
+  props<{ id: number }>()
+);
+
+export const deletePersonByIdFailure = createAction(
+  '[Person] Delete Person By Id Failure',
+  props<{ errorMessage: string }>()
+);

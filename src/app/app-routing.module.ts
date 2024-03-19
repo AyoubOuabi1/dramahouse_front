@@ -13,6 +13,7 @@ import {WatchListComponent} from "./component/front/watch-list/watch-list.compon
 import {checkLoginGuard} from "./guard/check-login.guard";
 import {NewMovieComponent} from "./component/dashboard/movie/new-movie/new-movie.component";
 import {SelectedMovieComponent} from "./component/dashboard/movie/selected-movie/selected-movie.component";
+import {PersonsListComponent} from "./component/dashboard/person/persons-list/persons-list.component";
 
 const routes: Routes = [
   {
@@ -53,8 +54,14 @@ const routes: Routes = [
       {
         path: 'selected-movie/:id',
         component:SelectedMovieComponent
+      },
+      {
+        path: 'persons',
+        component:PersonsListComponent
       }
-    ]
+    ],
+    canActivate : [checkLoginGuard]
+
   },
   {
     path: 'auth',

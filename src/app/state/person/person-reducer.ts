@@ -65,10 +65,9 @@ export const personReducer = createReducer(
   })),
 
   on(PersonActions.deletePersonSuccess, (state, { id }) => {
-    const updatedPersons = state.persons.filter(p => p.id !== id);
     return {
       ...state,
-      persons: updatedPersons,
+      persons: state.persons.filter(p => p.id !== id),
       error: null
     };
   }),
@@ -77,4 +76,16 @@ export const personReducer = createReducer(
     ...state,
     error: errorMessage
   })),
+
+  on(PersonActions.findPersonByNameSuccess, (state, { persons }) => ({
+    ...state,
+    persons,
+    error: null
+  })),
+
+  on(PersonActions.findPersonByNameFailure, (state, { errorMessage }) => ({
+    ...state,
+    error: errorMessage
+  }))
+
 );

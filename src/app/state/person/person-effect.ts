@@ -1,7 +1,13 @@
 import {Injectable} from "@angular/core";
 import {PersonService} from "../../service/person/person.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {loadAllPersons, loadAllPersonsFailure, loadAllPersonsSuccess} from "./person-action";
+import {
+  deletePerson, deletePersonByIdSuccess,
+  findPersonByName,
+  loadAllPersons,
+  loadAllPersonsFailure,
+  loadAllPersonsSuccess
+} from "./person-action";
 import {catchError, map, mergeMap} from "rxjs/operators";
 
 @Injectable()
@@ -52,11 +58,23 @@ export class PersonEffect{
 
     deletePerson$ = createEffect(() => {
       return this.actions$.pipe(
-        ofType(loadAllPersons),
-        mergeMap(() => this.personService.getAllPersons().pipe(
+        ofType(deletePerson),
+        mergeMap((action) => this.personService.deletePerson(action.id).pipe(
+          map((id) => deletePersonByIdSuccess(id)),
+          catchError((errorMessage) => [loadAllPersonsFailure({errorMessage})])
+        ))
+      );
+    });
+
+    findPersonByName$ = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(findPersonByName),
+        mergeMap((action) => this.personService.searchPersonByName(action.name).pipe(
           map(persons => loadAllPersonsSuccess({persons})),
           catchError((errorMessage) => [loadAllPersonsFailure({errorMessage})])
         ))
       );
     });
+
+
 }

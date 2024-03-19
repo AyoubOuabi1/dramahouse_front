@@ -38,11 +38,12 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
-import {PersonEffect} from "./state/person/peron-effect";
+import {PersonEffect} from "./state/person/person-effect";
 import {personReducer} from "./state/person/person-reducer";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { SelectedMovieComponent } from './component/dashboard/movie/selected-movie/selected-movie.component';
+import { PersonsListComponent } from './component/dashboard/person/persons-list/persons-list.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SelectedMovieComponent } from './component/dashboard/movie/selected-mov
     WatchListComponent,
     NewMovieComponent,
     SelectedMovieComponent,
+    PersonsListComponent,
 
   ],
   imports: [
