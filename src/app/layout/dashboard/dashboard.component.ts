@@ -5,6 +5,7 @@ import { AuthenticatonServiceService } from 'src/app/service/auth/authenticaton-
 import { AppState } from 'src/app/state/app-state';
 import * as UserActions from 'src/app/state/user/user-action'
 import { Component, ElementRef, Renderer2, ViewChild, AfterViewInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,8 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('menuToggle') menuToggle!: ElementRef;
   dropdownToggles!: ElementRef[];
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2,
+              private router:Router) {}
 
   ngAfterViewInit() {
     this.dropdownToggles = this.dashboard.nativeElement.querySelectorAll('.dashboard-nav-dropdown-toggle');
@@ -45,5 +47,21 @@ export class DashboardComponent implements AfterViewInit {
     } else {
       this.renderer.toggleClass(this.dashboard.nativeElement, 'dashboard-compact');
     }*/
+  }
+
+  logOut(){
+    localStorage.removeItem('user');
+     this.router.navigate(['/']);
+  }
+  toProfile(){
+    this.router.navigate(['/dashboard/profile']);
+
+  }
+
+  toGenres(){
+    this.router.navigate(['/dashboard/genres']);
+  }
+  toHome(){
+    this.router.navigate(['/']);
   }
 }

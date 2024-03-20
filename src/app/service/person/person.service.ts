@@ -8,7 +8,7 @@ import {Person} from "../../entities/person";
 })
 export class PersonService {
 
-  url = 'http://localhost:8081/api/v1/user/persons';
+  url = 'http://localhost:8081/api/v1/persons';
   constructor(private httpClient: HttpClient) { }
 
   getAllPersons() : Observable<Person[]> {
@@ -19,7 +19,7 @@ export class PersonService {
     return this.httpClient.get<Person>(`${this.url}/${id}`);
   }
 
-  addPerson(person: Person) : Observable<Person> {
+  addPerson(person: FormData) : Observable<Person> {
     return this.httpClient.post<Person>(this.url, person);
   }
 

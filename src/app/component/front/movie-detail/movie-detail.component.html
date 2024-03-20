@@ -56,8 +56,8 @@
               <a *ngIf="showMovieVideo" class="btn col-sm-6 col-md-4 col-lg-2 btn-lg mt-auto" style="background-color: gold" (click)="hideMovieDetail()" role="button">Hide Video</a>
               <a class="btn  col-sm-6 col-md-4 col-lg-2 btn-lg mt-auto" style="background-color: gold" data-bs-toggle="modal"
                  data-bs-target="#trailerModal">Watch Trailer</a>
-              <a *ngIf="!addedToWatchList" class="btn  col-sm-12 col-md-6 col-lg-4 btn-lg mt-auto" style="background-color: gold" (click)="addToWatchList(movieData.id)">Add to Watch List</a>
-              <a *ngIf="addedToWatchList" class="btn  col-sm-12 col-md-6 col-lg-4 btn-lg mt-auto" style="background-color: gold" (click)="removeFromWatchList(movieData.id)">remove from Watch List</a>
+                <a *ngIf="!addedToWatchList && checkIfUserIsLoggedIn()"  class="btn  col-sm-12 col-md-6 col-lg-4 btn-lg mt-auto" style="background-color: gold" (click)="addToWatchList(movieData.id)">Add to Watch List</a>
+                <a *ngIf="addedToWatchList  && checkIfUserIsLoggedIn() " class="btn  col-sm-12 col-md-6 col-lg-4 btn-lg mt-auto" style="background-color: gold" (click)="removeFromWatchList(movieData.id)">remove from Watch List</a>
             </div>
           </div>
         </div>

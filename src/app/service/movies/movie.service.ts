@@ -10,7 +10,7 @@ import {MovieRequest} from "../../entities/movie-request";
 })
 export class MovieService {
 
-  private apiUrl = 'http://localhost:8081/api/v1/user/movies';
+  private apiUrl = 'http://localhost:8081/api/v1/movies';
 
   constructor(private http: HttpClient) { }
 

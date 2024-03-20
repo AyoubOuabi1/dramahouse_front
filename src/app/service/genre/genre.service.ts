@@ -7,7 +7,7 @@ import {Genre} from "../../entities/genre";
   providedIn: 'root'
 })
 export class GenreService {
-  private baseUrl = 'http://localhost:8081/api/v1/user/genres';
+  private baseUrl = 'http://localhost:8081/api/v1/genres';
 
   constructor(private http: HttpClient) { }
 
@@ -17,5 +17,9 @@ export class GenreService {
 
   addGenre(genreDTO: Genre): Observable<Genre> {
     return this.http.post<Genre>(this.baseUrl, genreDTO);
+  }
+
+  deleteGenre(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

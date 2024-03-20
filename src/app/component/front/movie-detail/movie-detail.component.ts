@@ -6,6 +6,7 @@ import * as MovieActions from '../../../state/movie/movie-action';
 import { Observable } from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {LocalStorgeServiceService} from "../../../service/local-storage/local-storge-service.service";
 
 @Component({
   selector: 'app-movie-detail',
@@ -23,9 +24,11 @@ export class MovieDetailComponent implements OnInit {
     private store: Store<AppState>,
     private route: ActivatedRoute,
     private router: Router,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private localStorageService : LocalStorgeServiceService) { }
 
   ngOnInit(): void {
+    // add code to check if user is connected or not
     this.showMovieVideo = false;
     this.route.params.subscribe(params => {
       const id = +params['id'];
@@ -42,8 +45,7 @@ export class MovieDetailComponent implements OnInit {
       );
       this.store.select(state => state.movie.movies).subscribe(
         movies=>{
-          this.moviesList = movies.slice(); // Create a copy of the array
-          console.log(this.moviesList);
+          this.moviesList = movies.slice();
           this.index = this.moviesList.findIndex(movie => movie.id === id)
           if (this.index > -1) {
             this.moviesList.splice(this.index, 1);
@@ -81,5 +83,8 @@ export class MovieDetailComponent implements OnInit {
   removeFromWatchList(movieId: number) {
     this.store.dispatch(MovieActions.deleteMovieFromWatchlist({movieId}));
     this.addedToWatchList = false;
+  }
+  checkIfUserIsLoggedIn() {
+    return localStorage.getItem('user') !== null;
   }
 }

@@ -44,6 +44,10 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { SelectedMovieComponent } from './component/dashboard/movie/selected-movie/selected-movie.component';
 import { PersonsListComponent } from './component/dashboard/person/persons-list/persons-list.component';
+import { AddPersonComponent } from './component/dashboard/person/add-person/add-person.component';
+import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
+import { ProfilDetailComponent } from './component/dashboard/profil-detail/profil-detail.component';
+import { GenresListComponent } from './component/dashboard/genres/genres-list/genres-list.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,10 @@ import { PersonsListComponent } from './component/dashboard/person/persons-list/
     NewMovieComponent,
     SelectedMovieComponent,
     PersonsListComponent,
+    AddPersonComponent,
+    UnauthorizedComponent,
+    ProfilDetailComponent,
+    GenresListComponent,
 
   ],
   imports: [

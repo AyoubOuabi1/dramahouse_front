@@ -6,6 +6,7 @@ import * as UserActions from '../user/user-action';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { LocalStorgeServiceService } from 'src/app/service/local-storage/local-storge-service.service';
+import {UserService} from "../../service/user/user.service";
 
 
 @Injectable()
@@ -13,9 +14,9 @@ export class UserEffect {
     constructor(
         private actions$: Actions,
         private authService:AuthenticatonServiceService,
-        private localStorgeService:LocalStorgeServiceService,
         private router : Router,
-        private localStorageService: LocalStorgeServiceService
+        private localStorageService: LocalStorgeServiceService,
+        private userService: UserService
         ){}
 
 
@@ -33,7 +34,7 @@ export class UserEffect {
 
     registerSuccess$ = createEffect(() => this.actions$.pipe(
         ofType(UserActions.registerSuccess),
-        tap(() => this.router.navigate(['/dashboard']))
+        tap(() => this.router.navigate(['/']))
     ), {dispatch: false});
 
     login$ = createEffect(() => this.actions$.pipe(
@@ -49,7 +50,7 @@ export class UserEffect {
 
     loginSuccess$ = createEffect(() => this.actions$.pipe(
         ofType(UserActions.loginSuccess),
-        tap(() => this.router.navigate(['/dashboard']))
+        tap(() => this.router.navigate(['/']))
     ), {dispatch: false});
 
     logout$ = createEffect(() => this.actions$.pipe(
@@ -58,25 +59,24 @@ export class UserEffect {
         tap(() => this.localStorageService.clearLocalStorage())
     ), {dispatch: false});
 
-
-    checkJwtValidity$ = createEffect(() => this.actions$.pipe(
-        ofType(UserActions.checkJwtValidity),
-        mergeMap(action => this.authService.checkJwtValidity(action.token).pipe(
-            map(() => UserActions.checkJwtValiditySuccess()),
-            catchError((errorMessage) => [UserActions.checkJwtValidityFailure({errorMessage})])
+    updateProfile$ = createEffect(() => this.actions$.pipe(
+        ofType(UserActions.updateProfile),
+        mergeMap(action => this.userService.updteProfile(action.user).pipe(
+            map(user => UserActions.updateProfileSuccess({user})),
+            catchError((errorMessage) => [UserActions.updateProfileFailure({errorMessage})])
         ))
     ));
 
-    checkJwtValidityFailure$ = createEffect(() => this.actions$.pipe(
-        ofType(UserActions.checkJwtValidityFailure),
-        tap(() => this.router.navigate(['/'])),
-        tap(()=> this.localStorgeService.clearLocalStorage()),
-    ), {dispatch: false});
+    loadAllUsers$ = createEffect(() => this.actions$.pipe(
+        ofType(UserActions.loadAllUsers),
+        mergeMap(() => this.userService.loadAllUsers().pipe(
+            map(users => UserActions.loadAllUsersSuccess({users})),
+            catchError((errorMessage) => [UserActions.loadAllUsersFailure({errorMessage})])
+        ))
+    ));
 
-    checkJwtValiditySuccess$ = createEffect(() => this.actions$.pipe(
-        ofType(UserActions.checkJwtValiditySuccess),
-        tap(() => this.router.navigate(['/dashboard']))
-    ), {dispatch: false});
+
+
 
 
 }

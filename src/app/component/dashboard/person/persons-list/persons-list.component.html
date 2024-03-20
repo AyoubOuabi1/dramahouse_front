@@ -8,7 +8,7 @@
       </div>
       <div class="card shadow">
         <div class="card-header py-3">
-          <p class="text-primary m-0 fw-bold">Movies Info</p>
+          <p class="text-primary m-0 fw-bold">Actors | Directors Info</p>
         </div>
         <div class="card-body">
           <div class="row">
@@ -42,7 +42,7 @@
                 <td><img src="{{person.imageUrl}}" alt="banner" width="50" height="50"></td>
                 <td>{{person.name}}</td>
                 <td>{{person.nationality}}</td>
-                <td>{{person.birthDate}}</td>
+                <td>{{person.birthDate.substring(0,10)}}</td>
                 <td><button type="button" class="btn btn-success" (click)="view(person.id)" >View </button></td>
                 <td><button type="button" class="btn btn-danger" (click)="deletePerson(person.id)">Delete </button></td>
               </tr>

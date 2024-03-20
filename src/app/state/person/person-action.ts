@@ -32,7 +32,7 @@ export const loadPersonByIdFailure = createAction(
 
 export const addPerson = createAction(
   '[Person] Add Person',
-  props<{ person: Person }>()
+  props<{ person: FormData }>()
 );
 
 export const addPersonSuccess = createAction(

@@ -1,0 +1,59 @@
+<div class='card'>
+
+  <div class='card-body'>
+    <div class="container-fluid ">
+      <div class="d-flex justify-content-between">
+        <h3 class="text-dark mb-4">Genres</h3>
+        <form (ngSubmit)="onSubmit()" [formGroup]="genreForm" enctype="multipart/form-data">
+
+          <div class="input-group">
+            <input class="form-control me-5" type="text" placeholder="new  genre"  formControlName="name" aria-describedby="button-search">
+            <button class="btn btn-primary ms-5" id="button-search" type="submit">add new genre </button>
+          </div>
+
+        </form>
+      </div>
+      <div class="card shadow">
+        <div class="card-header py-3">
+          <p class="text-primary m-0 fw-bold">Gneres Info</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 text-nowrap">
+            </div>
+            <div class="col-md-6">
+              <div  class="text-md-end dataTables_filter">
+                <label class="form-label">
+                  <input class="form-control form-control-sm"  id="movieTable_filter" type="search"  aria-controls="dataTable"
+                         placeholder="Search by name"/>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div  class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+            <table id="dataTable" class="table my-0">
+              <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody >
+              <tr *ngFor="let genre of genres$ | async">
+                <td>{{genre.id}}</td>
+                <td>{{genre.name}}</td>
+                <td><button type="button" class="btn btn-success" >View </button></td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteGenre(genre.id)">Delete </button></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

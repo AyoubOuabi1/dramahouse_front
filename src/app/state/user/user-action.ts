@@ -38,16 +38,32 @@ export const registerFailure = createAction(
     props<{ errorMessage: string }>()
 );
 
-export const checkJwtValidity = createAction(
-    '[User] Check Jwt Validity',
-    props<{ token: string }>()
+export const updateProfile = createAction(
+    '[User] Update Profile',
+    props<{ user: UserEntity }>()
 );
 
-export const checkJwtValiditySuccess = createAction(
-    '[User] Check Jwt Validity Success'
+export const updateProfileSuccess = createAction(
+    '[User] Update Profile Success',
+    props<{ user: UserEntity }>()
 );
 
-export const checkJwtValidityFailure = createAction(
-    '[User] Check Jwt Validity Failure',
+export const updateProfileFailure = createAction(
+    '[User] Update Profile Failure',
     props<{ errorMessage: string }>()
 );
+
+export const loadAllUsers = createAction(
+    '[User] Load All Users'
+);
+
+export const loadAllUsersSuccess = createAction(
+    '[User] Load All Users Success',
+    props<{ users: UserEntity[] }>()
+);
+
+export const loadAllUsersFailure = createAction(
+    '[User] Load All Users Failure',
+    props<{ errorMessage: string }>()
+);
+

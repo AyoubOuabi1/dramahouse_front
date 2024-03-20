@@ -13,12 +13,16 @@ export class LocalStorgeServiceService {
   setUser(user:AuthResponse){
     localStorage.setItem('user', JSON.stringify(user));
   }
-
+  getUser(): AuthResponse | null {
+    return this.response;
+  }
   getUserToken(): string | null {
     return this.response.accessToken;
 
   }
-
+  getRole(): string | null{
+    return this.response.role;
+  }
 
   clearLocalStorage() {
     localStorage.clear();

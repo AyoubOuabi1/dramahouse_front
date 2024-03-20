@@ -64,13 +64,12 @@ export const personReducer = createReducer(
     error: errorMessage
   })),
 
-  on(PersonActions.deletePersonSuccess, (state, { id }) => {
-    return {
+  on(PersonActions.deletePersonSuccess, (state, { id }) => ({
       ...state,
       persons: state.persons.filter(p => p.id !== id),
       error: null
-    };
-  }),
+
+  })),
 
   on(PersonActions.deletePersonFailure, (state, { errorMessage }) => ({
     ...state,

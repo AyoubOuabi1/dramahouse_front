@@ -1,7 +1,7 @@
 import { UserEntity } from "src/app/entities/user-entity";
 
 export interface UserState {
-    User: UserEntity;
+    User: UserState;
     IsAuthenticated: boolean;
     IsLoading: boolean;
     ErrorMessage: string | null;

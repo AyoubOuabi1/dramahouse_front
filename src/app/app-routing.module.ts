@@ -14,6 +14,11 @@ import {checkLoginGuard} from "./guard/check-login.guard";
 import {NewMovieComponent} from "./component/dashboard/movie/new-movie/new-movie.component";
 import {SelectedMovieComponent} from "./component/dashboard/movie/selected-movie/selected-movie.component";
 import {PersonsListComponent} from "./component/dashboard/person/persons-list/persons-list.component";
+import {AddPersonComponent} from "./component/dashboard/person/add-person/add-person.component";
+import {UnauthorizedComponent} from "./component/unauthorized/unauthorized.component";
+import {checkRoleGuard} from "./guard/check-role.guard";
+import {ProfilDetailComponent} from "./component/dashboard/profil-detail/profil-detail.component";
+import {GenresListComponent} from "./component/dashboard/genres/genres-list/genres-list.component";
 
 const routes: Routes = [
   {
@@ -58,9 +63,22 @@ const routes: Routes = [
       {
         path: 'persons',
         component:PersonsListComponent
+      }, {
+        path: 'add-person',
+        component:AddPersonComponent
+      },
+      {
+        path: 'profile',
+        component: ProfilDetailComponent
+
+      },
+      {
+        path: 'genres',
+        component: GenresListComponent
+
       }
     ],
-    canActivate : [checkLoginGuard]
+    canActivate : [checkLoginGuard,checkRoleGuard]
 
   },
   {
@@ -76,6 +94,10 @@ const routes: Routes = [
         component: RegisterFormComponent
       }
     ]
+  },{
+    path : 'unauthorized',
+    component :UnauthorizedComponent,
+    canActivate : [checkLoginGuard]
   }
 ];
 

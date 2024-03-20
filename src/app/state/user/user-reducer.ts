@@ -5,33 +5,35 @@ import { AuthResponse } from 'src/app/entities/auth-response';
 
 
 export interface UserState {
-    user: AuthResponse | null;
+    userAuth: AuthResponse | null;
+    userr: UserEntity | null;
     loading: boolean;
     error: string | null;
   }
 
   export const initialState: UserState = {
-    user: null,
+    userAuth: null,
+    userr: null,
     loading: false,
     error: null,
   };
 
   export const userReducer = createReducer(
     initialState,
-  
+
     on(UserActions.register, state => ({
       ...state,
       loading: true,
       error: null,
 
     })),
-  
+
     on(UserActions.registerSuccess, (state, { user }) => ({
       ...state,
       user,
       loading: false
     })),
-  
+
     on(UserActions.registerFailure, (state, { errorMessage }) => ({
         ...state,
         error: errorMessage,
@@ -56,30 +58,25 @@ export interface UserState {
         error: errorMessage,
         loading: false
     })),
-  
+
     on(UserActions.logout, state => ({
       ...state,
       user: null,
       loading: false,
       error: null,
     })),
-
-    on(UserActions.checkJwtValidity, state => ({
+    on(UserActions.updateProfile, state => ({
       ...state,
       loading: true,
       error: null,
     })),
 
-    on(UserActions.checkJwtValiditySuccess, state => ({
+    on(UserActions.updateProfileSuccess, (state, { user }) => ({
       ...state,
-      loading: false,
+      user,
+      loading: false
     })),
 
-    on(UserActions.checkJwtValidityFailure, (state, { errorMessage }) => ({
-      ...state,
-      error: errorMessage,
-      loading: false
-  })),
 
 
 
