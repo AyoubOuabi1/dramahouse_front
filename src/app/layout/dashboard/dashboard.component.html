@@ -11,13 +11,13 @@
       <nav class="dashboard-nav-list">
         <a (click)="toHome()" class="dashboard-nav-item ">
           <i class="fas fa-tachometer-alt"></i> Home</a>
-        <a href="/dashboard/movies" class="dashboard-nav-item active">
+        <a (click)="toMovies()" class="dashboard-nav-item active">
           <i class="fa-solid fa-video"></i> Movies</a>
-        <a href="/dashboard/persons" class="dashboard-nav-item">
+        <a (click)="toMovies()" class="dashboard-nav-item">
           <i class="fa-solid fa-users"></i> Actors </a>
 
         <a (click)="toGenres()" class="dashboard-nav-item"><i class="fa-solid fa-list"></i> Genre </a>
-        <a href="/dashboard/movies" class="dashboard-nav-item"><i class="fa-solid fa-users"></i> Users </a>
+        <a  (click)="toUsers()" class="dashboard-nav-item"><i class="fa-solid fa-users"></i> Users </a>
         <div class="nav-item-divider"></div>
         <a class="dashboard-nav-item" (click)="toProfile()"><i class="fa-regular fa-user" ></i> Profile </a>
         <a class="dashboard-nav-item" (click)="logOut()"><i class="fas fa-sign-out-alt" ></i> Logout </a>

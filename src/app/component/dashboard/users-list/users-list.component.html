@@ -1,0 +1,50 @@
+<div class='card'>
+
+  <div class='card-body'>
+    <div class="container-fluid ">
+      <div class="d-flex justify-content-between">
+        <h3 class="text-dark mb-4">Users</h3>
+      </div>
+      <div class="card shadow">
+        <div class="card-header py-3">
+          <p class="text-primary m-0 fw-bold">Users Info</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 text-nowrap">
+            </div>
+            <div class="col-md-6">
+              <div  class="text-md-end dataTables_filter">
+                <label class="form-label">
+                  <input class="form-control form-control-sm"  id="movieTable_filter" type="search" aria-controls="dataTable"
+                         placeholder="Search by name"/>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div  class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+            <table id="dataTable" class="table my-0">
+              <thead>
+              <tr>
+                <th>avatar</th>
+                <th>image</th>
+                <th>email</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody >
+              <tr *ngFor="let user of users$ | async">
+                <td><img src="{{user.profilePicture}}" alt="banner" width="50" height="50"></td>
+                <td>{{user.email}}</td>
+                <td><button type="button" class="btn btn-danger" >Delete </button></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

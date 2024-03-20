@@ -48,6 +48,7 @@ import { AddPersonComponent } from './component/dashboard/person/add-person/add-
 import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
 import { ProfilDetailComponent } from './component/dashboard/profil-detail/profil-detail.component';
 import { GenresListComponent } from './component/dashboard/genres/genres-list/genres-list.component';
+import { UsersListComponent } from './component/dashboard/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { GenresListComponent } from './component/dashboard/genres/genres-list/ge
     UnauthorizedComponent,
     ProfilDetailComponent,
     GenresListComponent,
+    UsersListComponent,
 
   ],
   imports: [

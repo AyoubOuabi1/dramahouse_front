@@ -61,6 +61,20 @@ export class DashboardComponent implements AfterViewInit {
   toGenres(){
     this.router.navigate(['/dashboard/genres']);
   }
+
+  toMovies(){
+    this.router.navigate(['/dashboard/movies']);
+  }
+
+  toUsers(){
+    this.router.navigate(['/dashboard/users'])
+  }
+  toActors(){
+    this.router.navigate(['/dashboard/persons'])
+  }
+
+
+
   toHome(){
     this.router.navigate(['/']);
   }

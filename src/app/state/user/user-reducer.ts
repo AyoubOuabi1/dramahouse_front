@@ -7,6 +7,7 @@ import { AuthResponse } from 'src/app/entities/auth-response';
 export interface UserState {
     userAuth: AuthResponse | null;
     userr: UserEntity | null;
+    users: UserEntity[] | null;
     loading: boolean;
     error: string | null;
   }
@@ -14,6 +15,7 @@ export interface UserState {
   export const initialState: UserState = {
     userAuth: null,
     userr: null,
+    users: [],
     loading: false,
     error: null,
   };
@@ -76,6 +78,23 @@ export interface UserState {
       user,
       loading: false
     })),
+
+    on(UserActions.updateProfileFailure, (state, { errorMessage }) => ({
+        ...state,
+        error: errorMessage,
+        loading: false
+    })),
+
+    on(UserActions.loadAllUsersSuccess, (state, { users }) => ({
+      ...state,
+      users: users,
+      loading: false
+    })),
+    on(UserActions.loadAllUsersFailure, (state, { errorMessage }) => ({
+      ...state,
+      error: errorMessage,
+      loading: false
+    }))
 
 
 

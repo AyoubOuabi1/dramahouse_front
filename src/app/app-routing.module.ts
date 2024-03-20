@@ -19,6 +19,7 @@ import {UnauthorizedComponent} from "./component/unauthorized/unauthorized.compo
 import {checkRoleGuard} from "./guard/check-role.guard";
 import {ProfilDetailComponent} from "./component/dashboard/profil-detail/profil-detail.component";
 import {GenresListComponent} from "./component/dashboard/genres/genres-list/genres-list.component";
+import {UsersListComponent} from "./component/dashboard/users-list/users-list.component";
 
 const routes: Routes = [
   {
@@ -75,6 +76,11 @@ const routes: Routes = [
       {
         path: 'genres',
         component: GenresListComponent
+
+      },
+      {
+        path: 'users',
+        component: UsersListComponent
 
       }
     ],
