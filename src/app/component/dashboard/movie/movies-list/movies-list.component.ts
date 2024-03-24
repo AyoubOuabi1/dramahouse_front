@@ -98,4 +98,8 @@ export class MoviesListComponent implements OnInit{
   view(movieId: number) {
     this.router.navigate(['/dashboard/selected-movie', movieId]);
   }
+
+  toNewMovie() {
+    this.router.navigate(['/dashboard/add-movie']);
+  }
 }

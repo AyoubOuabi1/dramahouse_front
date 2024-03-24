@@ -92,4 +92,8 @@ export class PersonsListComponent implements OnInit {
     })
 
   }
-}
+
+   toNewPerson() {
+     this.router.navigate(['/dashboard/add-person'])
+   }
+ }

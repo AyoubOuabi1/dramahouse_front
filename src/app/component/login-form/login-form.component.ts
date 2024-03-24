@@ -16,18 +16,17 @@ export class LoginFormComponent implements OnInit {
   user!: UserEntityLogin;
 
   loginUser(userData: UserEntityLogin) {
-    
+
     this.store.dispatch(UserActions.login({ user: userData }));
 
   }
 
-
   ngOnInit(): void {
-    this.loginForm = this._fb.group({ 
+    this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-    
+
   }
   onSubmit() {
     if (this.loginForm.valid) {
@@ -42,7 +41,10 @@ export class LoginFormComponent implements OnInit {
     private store: Store<AppState>,
     private _fb: FormBuilder,
     private router : Router
-    
+
     ) {}
 
+  toRegister() {
+    this.router.navigate(['/auth/register']);
+  }
 }

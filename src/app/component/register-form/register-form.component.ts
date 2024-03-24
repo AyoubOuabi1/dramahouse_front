@@ -43,6 +43,10 @@ export class RegisterFormComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private _fb: FormBuilder,
-
+    private router: Router
     ) {}
+
+  toLogin() {
+    this.router.navigate(['/auth/login']);
+  }
 }

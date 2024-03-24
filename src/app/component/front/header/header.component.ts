@@ -53,4 +53,8 @@ export class HeaderComponent {
     }
     return false
   }
+
+  toWatchList() {
+    this.router.navigate(['dashboard/watch-list']);
+  }
 }
