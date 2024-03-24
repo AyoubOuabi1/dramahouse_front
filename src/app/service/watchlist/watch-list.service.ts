@@ -3,13 +3,15 @@ import {HttpClient} from "@angular/common/http";
 import {WatchlistRes} from "../../entities/watchlist-res";
 import {Observable} from "rxjs";
 import {Movie} from "../../entities/movie";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WatchListService {
 
-  private apiUrl = 'http://localhost:8081/api/v1/watch-list';
+ // private apiUrl = 'http://localhost:8081/api/v1/watch-list';
+  private apiUrl = environment.apiUrl+"watch-list";
 
   constructor(private http: HttpClient) { }
 

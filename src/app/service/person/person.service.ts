@@ -2,36 +2,38 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Person} from "../../entities/person";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
 
-  url = 'http://localhost:8081/api/v1/persons';
+  private apiUrl = environment.apiUrl+"persons";
+
   constructor(private httpClient: HttpClient) { }
 
   getAllPersons() : Observable<Person[]> {
-    return this.httpClient.get<Person[] >(this.url);
+    return this.httpClient.get<Person[] >(this.apiUrl);
   }
 
   getPersonById(id: number) : Observable<Person> {
-    return this.httpClient.get<Person>(`${this.url}/${id}`);
+    return this.httpClient.get<Person>(`${this.apiUrl}/${id}`);
   }
 
   addPerson(person: FormData) : Observable<Person> {
-    return this.httpClient.post<Person>(this.url, person);
+    return this.httpClient.post<Person>(this.apiUrl, person);
   }
 
   updatePerson(person: Person) : Observable<Person> {
-    return this.httpClient.put<Person>(`${this.url}/${person.id}`, person);
+    return this.httpClient.put<Person>(`${this.apiUrl}/${person.id}`, person);
   }
 
   deletePerson(id: number) : Observable<Person> {
-    return this.httpClient.delete<Person>(`${this.url}/${id}`);
+    return this.httpClient.delete<Person>(`${this.apiUrl}/${id}`);
   }
 
   searchPersonByName(name: string) : Observable<Person[]> {
-    return this.httpClient.get<Person[]>(`${this.url}/search?name=${name}`);
+    return this.httpClient.get<Person[]>(`${this.apiUrl}/search?name=${name}`);
   }
 }

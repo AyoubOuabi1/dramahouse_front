@@ -120,12 +120,10 @@ export class SelectedMovieComponent implements OnInit {
       this.store.dispatch(MovieActions.updateMovie({ movie: formData}));
       // @ts-ignore
       console.log(this.activeRoute.params['id'])
-      this.store.select('movie').subscribe(() => {
-        setTimeout(() => {
-          this.spinner.hide(); // Hide the spinner after a delay
-          Swal.fire("Movie Updated Successfully", "", "success");
-        }, 1000);
-      });
+      setTimeout(() => {
+        this.spinner.hide(); // Hide the spinner after a delay
+        Swal.fire("Movie Updated Successfully", "", "success");
+      }, 2000);
     }
   }
 

@@ -4,13 +4,15 @@ import {Observable} from "rxjs";
 import {Movie} from "../../entities/movie";
 import {WatchlistRes} from "../../entities/watchlist-res";
 import {MovieRequest} from "../../entities/movie-request";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  private apiUrl = 'http://localhost:8081/api/v1/movies';
+  //private apiUrl = 'http://localhost:8081/api/v1/movies';
+  private apiUrl = environment.apiUrl+"movies";
 
   constructor(private http: HttpClient) { }
 

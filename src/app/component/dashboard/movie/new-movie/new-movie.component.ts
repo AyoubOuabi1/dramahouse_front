@@ -71,13 +71,10 @@ export class NewMovieComponent implements OnInit {
       formData.append('genres', formValue.genres.join(','));
       formData.append('cast', formValue.cast.join(','));
       this.store.dispatch(MovieActions.addMovie({ movie: formData }));
-      this.store.select('movie').subscribe(() => {
-        setTimeout(() => {
-          this.spinner.hide(); // Hide the spinner after a delay
-          Swal.fire("Movie Added Successfully", "", "success");
-        }, 1000);
-
-      });
+      setTimeout(() => {
+        this.spinner.hide();
+        Swal.fire("Movie Added Successfully", "", "success");
+      }, 2000);
       this.movieForm.reset()
     }
   }
